@@ -16,9 +16,10 @@ class CommonPage extends GetView {
   @override
   Widget build(BuildContext context) {
     return Obx(()=>Scaffold(
-        body: Center(child: Text("Common paage")),
+        body: screens[selected_index.value],
         bottomNavigationBar: NavigationBarTheme(
           data:  NavigationBarThemeData(
+            height: 60,
             indicatorColor: Colors.blue.shade200,
             labelTextStyle: MaterialStateProperty.all(TextStyle(fontWeight: FontWeight.w400,fontSize: 16)),
             backgroundColor: Colors.lightBlueAccent,
