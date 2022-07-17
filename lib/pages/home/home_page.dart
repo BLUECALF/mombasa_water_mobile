@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends GetView {
+  final prefs = SharedPreferences.getInstance();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,8 @@ class HomePage extends GetView {
                 children: [
                   Card(child: Padding(
                     padding: const EdgeInsets.all(60.0),
-                    child: Text("Add account"),
+                    child: TextButton(child: Text("Add account"),onPressed: (){add_account(context);},),
+
                   ),),Card(child: Padding(
                     padding: const EdgeInsets.all(60.0),
                     child: Text("Add account"),
@@ -124,6 +128,100 @@ class HomePage extends GetView {
           ),
         ),
       ),
+    );
+  }
+  // FUNCTIONS
+
+  void add_account(BuildContext context)
+  {
+    final _formKey2 = GlobalKey<FormBuilderState>();
+    // make get popup to activate acc
+    RxString errorText = "".obs;
+    Get.defaultDialog(title:"Add Water account",
+      onCancel: (){Get.back();} ,
+      content: SingleChildScrollView(
+            child: Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.all(24.0),
+                child: Column(
+                  children: [
+                    SizedBox(height: 10,),
+                    SizedBox(height: 20,),
+                    Obx(
+                          () => FormBuilder(
+                        key: _formKey2,
+                        child: Column(
+                          children: [
+                            FormBuilderTextField(
+                              name: 'acc_no',
+                              decoration: InputDecoration(
+                                  labelText: 'Enter Account number',
+                                  border: OutlineInputBorder(),
+                                  errorText: errorText.value.length > 0
+                                      ? errorText.value
+                                      : null),
+                              onChanged: (String ?val) {
+                                errorText.value = '';
+                              },
+                              // valueTransformer: (text) => num.tryParse(text),
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(context),
+                                FormBuilderValidators.numeric(context)
+                              ]),
+                              keyboardType: TextInputType.number,
+                            ),
+                            FormBuilderTextField(
+                              name: 'names',
+                              decoration: InputDecoration(
+                                  labelText: 'Enter Your Full name',
+                                  border: OutlineInputBorder(),
+                                  errorText: errorText.value.length > 0
+                                      ? errorText.value
+                                      : null),
+                              onChanged: (String ?val) {
+                                errorText.value = '';
+                              },
+                              // valueTransformer: (text) => num.tryParse(text),
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(context),
+                              ]),
+                              keyboardType: TextInputType.text,
+                            ),
+                            FormBuilderTextField(
+                              name: 'phone',
+                              decoration: InputDecoration(
+                                  labelText: 'Enter Phone number',
+                                  border: OutlineInputBorder(),
+                                  errorText: errorText.value.length > 0
+                                      ? errorText.value
+                                      : null),
+                              onChanged: (String ?val) {
+                                errorText.value = '';
+                              },
+                              // valueTransformer: (text) => num.tryParse(text),
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(context),
+                                FormBuilderValidators.numeric(context)
+                              ]),
+                              keyboardType: TextInputType.number,
+                            ),
+
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
+          ),
+      onConfirm: () async
+      {
+        if (_formKey2.currentState?.saveAndValidate() == true) {
+
+          Map data = _formKey2.currentState!.value;
+          print("the data is ${data}");
+          // request the payment
+        }
+      },
     );
   }
 }
