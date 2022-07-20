@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mombasa_water/AppController/app_controller.dart';
+
 
 class HomePage extends GetView {
-  final prefs = SharedPreferences.getInstance();
+
+  AppController appController = Get.put(AppController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,17 +30,43 @@ class HomePage extends GetView {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Card(child: Padding(
-                    padding: const EdgeInsets.all(60.0),
-                    child: TextButton(child: Text("Add account"),onPressed: (){add_account(context);},),
+                  Container(
+                    height: 200,width: 200,
+                    child: Card(child: Padding(
+                      padding: const EdgeInsets.all(60.0),
+                      child: TextButton(child: Text("Add account"),onPressed: (){add_account(context);},),
 
-                  ),),Card(child: Padding(
-                    padding: const EdgeInsets.all(60.0),
-                    child: Text("Add account"),
-                  ),),Card(child: Padding(
-                    padding: const EdgeInsets.all(60.0),
-                    child: Text("Add account"),
-                  ),)
+                    ),),
+                  ),
+                  FutureBuilder(future: appController.get_user_list(),
+                  builder: (context ,snapshot)
+                    {
+                      if(snapshot.data == null)
+                        {
+                          //do nothing
+                        }
+                      else
+                        {
+                          List<String> userList = snapshot.data as List<String>;
+                          return Row( children: userList.map((e) =>  Container(
+                            width: 250,
+                            height: 200,
+                            child: Card(child: Padding(
+                              padding: const EdgeInsets.all(60.0),
+                              child: Column(
+                                children: [
+                                  Text("Name: ${e}"),
+                                  SizedBox(height: 10,),
+                                  Text("Balance: Ksh"),
+                                ],
+                              ),
+                            ),),
+                          ),).toList());
+                        }
+                      return Text("No users");
+                    }
+                    ,
+                  )
                 ],
               ),
             ),
@@ -56,7 +84,6 @@ class HomePage extends GetView {
                   make_button(icon_name: Icons.house,function: (){},text: "Desludging service"),
                   make_button(icon_name: Icons.house,function: (){},text: "Water Tank service"),
                   make_button(icon_name: Icons.house,function: (){},text: "Sewer service"),
-
                 ],
               ),
             ),
@@ -97,14 +124,15 @@ class HomePage extends GetView {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text("My Account"),
-              ListView(
-                shrinkWrap: true,
-                children: [
-                  ListTile(
-                    title: Text("Firstname Lastname"),leading: Icon(Icons.people),
-                  trailing: ElevatedButton(child: Text("Switch Account"), onPressed: (){},),
-                  ),
-                ],
+              Obx(()=> ListView(
+                  shrinkWrap: true,
+                  children: [
+                    ListTile(
+                      title: Text(appController.current_user.value),leading: Icon(Icons.people),
+                    trailing: ElevatedButton(child: Text("Switch Account"), onPressed: (){switch_acc();},),
+                    ),
+                  ],
+                ),
               ),
               Text("Support"),
             ListView(
@@ -219,9 +247,49 @@ class HomePage extends GetView {
 
           Map data = _formKey2.currentState!.value;
           print("the data is ${data}");
-          // request the payment
+          // save data
+           appController.add_user(data);
+           Get.back();
         }
       },
+    );
+  }
+  void switch_acc()
+  {
+    Get.defaultDialog(
+      title: "Click to switch account",
+      content: FutureBuilder(future: appController.get_user_list(),
+        builder: (context ,snapshot)
+        {
+          if(snapshot.data == null)
+          {
+            //do nothing
+          }
+          else
+          {
+            List<String> userList = snapshot.data as List<String>;
+            return Container(
+              height: 400,
+              child: ListView(children: userList.map((e) => Card(
+                child: ListTile(
+                  leading: Icon(Icons.people),
+                  title: Text(e),
+                  onTap: () async
+                  {
+                    appController.current_user.value = e;
+                    appController.current_user_data = (await appController.get_user_data(e))!;
+                    Get.back();
+                  },
+
+                ),
+              )).toList(),),
+            );
+
+          }
+          return Text("No Accounts");
+        }
+        ,
+      )
     );
   }
 }
