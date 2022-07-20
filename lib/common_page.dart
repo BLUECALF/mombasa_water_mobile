@@ -20,17 +20,17 @@ class CommonPage extends GetView {
         bottomNavigationBar: NavigationBarTheme(
           data:  NavigationBarThemeData(
             height: 60,
-            indicatorColor: Colors.blue.shade200,
+            indicatorColor: Colors.blue,
             labelTextStyle: MaterialStateProperty.all(TextStyle(fontWeight: FontWeight.w400,fontSize: 16)),
-            backgroundColor: Colors.lightBlueAccent,
+
           ),
           child: NavigationBar(
             selectedIndex: selected_index.value,
             onDestinationSelected: (index) => selected_index.value = index,
             destinations: [
-              NavigationDestination(icon: Icon(Icons.home_outlined), label: "Home"),
+              NavigationDestination(icon: Image.asset("others/svgtopng/home-icon.png",color: Colors.black38,), label: "Home"),
               NavigationDestination(icon: Icon(MwIcons.services_icon), label: "Services"),
-              NavigationDestination(icon: Icon(Icons.people_outlined), label: "Accounts"),
+              NavigationDestination(icon: Image.asset("others/svgtopng/add-acc icon.png",color: Colors.black38,), label: "Accounts"),
             ],
           ),
         ),

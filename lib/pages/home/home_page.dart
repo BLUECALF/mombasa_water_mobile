@@ -20,15 +20,26 @@ class HomePage extends GetView {
         toolbarHeight: 60,
         title: Text("Home"),
         centerTitle: true,
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Colors.black,
+        shadowColor: Colors.transparent,
       ),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            //Image(icon: AssetImage("others/Icon assets/app-icon-login-removebg-preview 1.svg")),
+            Image(
+                image: AssetImage("others/svgtopng/app-icon-login-removebg-preview 1.png")),
 
             SizedBox(height: 20),
+            Text("Mombasa Water",
+            style:TextStyle(
+              fontSize: 18,
+              color: Colors.lightBlueAccent,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 3
+            )
+
+            ),
             Text("Your accounts "),
             SizedBox(height: 20),
             SingleChildScrollView(
@@ -58,7 +69,7 @@ class HomePage extends GetView {
                             width: 250,
                             height: 200,
                             child: GradientCard(
-                              gradient:g3,
+                              gradient:g2,
                               child: Padding(
                               padding: const EdgeInsets.all(60.0),
                               child: Column(
@@ -89,7 +100,7 @@ class HomePage extends GetView {
                 crossAxisCount: 3,
 
                 children: [
-                  make_button(icon_name: MwIcons.desludging_icon,function: (){},text: "Desludging service"),
+                  make_button_with_png(path: "others/svgtopng/desludging icon.png",function: (){},text: "Desludging service"),
                   make_button(icon_name: MwIcons.water_tank_icon,function: (){},text: "Water Tank service"),
                   make_button(icon_name: MwIcons.sewer_icon,function: (){},text: "Sewer service"),
                 ],
@@ -127,6 +138,31 @@ class HomePage extends GetView {
       ,
     );
   }
+  Widget make_button_with_png({required String path,required Function function,required String text})
+  {
+    return GradientElevatedButton(
+      style: ElevatedButton.styleFrom(
+        fixedSize: const Size(100, 100),
+        shape: const CircleBorder(),
+      ),
+      gradient: g1,
+      child:Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(path,width: 50,height: 50,),
+              Text("$text",textAlign: TextAlign.center,style: TextStyle(
+                fontSize: 12,
+                color: Colors.white,
+              ),),
+            ]
+        ),
+      ),
+      onPressed:(){function();}
+      ,
+    );
+  }
   Drawer makeDrawer()
   {
     return Drawer(
@@ -140,9 +176,15 @@ class HomePage extends GetView {
               Obx(()=> ListView(
                   shrinkWrap: true,
                   children: [
-                    ListTile(
-                      title: Text(appController.current_user.value),leading: Icon(MwIcons.user_1,color: Colors.black,),
-                    trailing: ElevatedButton(child: Text("Switch Account"), onPressed: (){switch_acc();},),
+                    Card(
+                      child: ListTile(
+                        title: Text(appController.current_user.value),leading:
+                       Image.asset("others/svgtopng/user 1.png"),
+                      trailing: GradientElevatedButton(
+                        gradient: g1,
+                        child: Text("Switch Account"),
+                        onPressed: (){switch_acc();},),
+                      ),
                     ),
                   ],
                 ),
@@ -151,19 +193,17 @@ class HomePage extends GetView {
             ListView(
               shrinkWrap: true,
               children: [
-                ListTile(title: Text("Call Support"),leading: Icon(Icons.phone),),
-                ListTile(title: Text("FAQ"),leading: Icon(MwIcons.faqs_icon),),
-                ListTile(title: Text("Mombasa Water Website"),leading: Icon(MwIcons.water_icon),),
+               make_list_tile(text: "Call Support", icon_data: MwIcons.suport_icon),
+               make_list_tile(text: "FAQ", icon_data: MwIcons.faqs_icon),
+               make_list_tile(text: "Mombasa Water Website", icon_data: MwIcons.water_icon),
               ],
             ),
               Text("About"),
               ListView(
                 shrinkWrap: true,
                 children: [
-                  ListTile(title: Text("Terms and Conditions"),leading: Icon(MwIcons.terms_icon),),
-                  ListTile(title: Text("Privacy Policy"),leading: Icon(MwIcons.privacy_policy),),
-
-                ],
+                  make_list_tile(text: "Terms and Conditions", icon_data: MwIcons.terms_icon),
+                  make_list_tile(text: "Privacy Policy", icon_data: MwIcons.privacy_policy),                ],
               )
             ],
           ),
@@ -303,6 +343,20 @@ class HomePage extends GetView {
         }
         ,
       )
+    );
+  }
+  Widget make_list_tile({required String text,required IconData icon_data})
+  {
+    return Card(
+      child: ListTile(
+          title: Text(text),leading: Container(
+          padding: EdgeInsets.all(15),
+          decoration: new BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.blue
+          ),
+          child: Icon(icon_data,color: Colors.white))
+      ),
     );
   }
 }

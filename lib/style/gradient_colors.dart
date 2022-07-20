@@ -8,8 +8,8 @@ Gradient g1 = LinearGradient(
   ],
 );
 Gradient g2 = LinearGradient(colors: [
-  Colors.yellowAccent,
-  Colors.white
+  Colors.blueGrey,
+  Colors.blue
 ]);
 Gradient g3 = LinearGradient(colors: [
   Colors.green,

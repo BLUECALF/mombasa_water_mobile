@@ -33,10 +33,10 @@ class ServicesPage extends GetView {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                make_button(icon_name: MwIcons.pay_icon,function: (){}, text: "Pay"),
+                make_button_with_png(path: "others/svgtopng/pay-icon.png",function: (){},text: "Pay"),
                 make_button(icon_name: MwIcons.query_bill_icon,function: (){}, text: "Query Bill"),
                 make_button(icon_name: MwIcons.illegal_fee,function: (){}, text: "Illegal Fee"),
-                make_button(icon_name: MwIcons.other_payments,function: (){}, text: "Other\nPayments"),
+                make_button_with_png(path: "others/svgtopng/other-payments.png",function: (){},text: "Other\nPayments"),
               ],
             ),
           ),
@@ -51,11 +51,11 @@ class ServicesPage extends GetView {
               crossAxisCount: 3,
 
               children: [
-                make_button(icon_name: MwIcons.desludging_icon,function: (){},text: "Desludging service"),
+                make_button_with_png(path: "others/svgtopng/desludging icon.png",function: (){},text: "Desludging service"),
                 make_button(icon_name: MwIcons.water_tank_icon,function: (){},text: "Water Tank service"),
                 make_button(icon_name: MwIcons.sewer_icon,function: (){},text: "Sewer service"),
-                make_button(icon_name: MwIcons.kiosk_icon,function: (){},text: "Kiosk Lic.& Admin Fee"),
-                make_button(icon_name: MwIcons.lic_fee_icon,function: (){},text: "New Water LIC Fees"),
+                make_button_with_png(path: "others/svgtopng/kiosk-icon.png",function: (){},text: "Kiosk Lic & Admin Fee"),
+                make_button_with_png(path: "others/svgtopng/lic fee-icon.png",function: (){},text: "New Water LIC fees"),
 
               ],
             ),
@@ -81,6 +81,31 @@ class ServicesPage extends GetView {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(icon_name,size: 50,),
+              Text("$text",textAlign: TextAlign.center,style: TextStyle(
+                fontSize: 12,
+                color: Colors.white,
+              ),),
+            ]
+        ),
+      ),
+      onPressed:(){function();}
+      ,
+    );
+  }
+  Widget make_button_with_png({required String path,required Function function,required String text})
+  {
+    return GradientElevatedButton(
+      style: ElevatedButton.styleFrom(
+        fixedSize: const Size(200, 200),
+        shape: const CircleBorder(),
+      ),
+      gradient: g1,
+      child:Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(path,width: 50,height: 50,),
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
                 fontSize: 12,
                 color: Colors.white,
