@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'pages/accounts/accounts_page.dart';
 import 'pages/home/home_page.dart';
 import 'pages/services/services_page.dart';
-
+import "package:mombasa_water/mw_icons_icons.dart";
 class CommonPage extends GetView {
  var selected_index = 0.obs;
 
@@ -28,9 +28,9 @@ class CommonPage extends GetView {
             selectedIndex: selected_index.value,
             onDestinationSelected: (index) => selected_index.value = index,
             destinations: [
-              NavigationDestination(icon: Icon(Icons.house), label: "Home"),
-              NavigationDestination(icon: Icon(Icons.mail), label: "Services"),
-              NavigationDestination(icon: Icon(Icons.people), label: "Accounts"),
+              NavigationDestination(icon: Icon(Icons.home_outlined), label: "Home"),
+              NavigationDestination(icon: Icon(MwIcons.services_icon), label: "Services"),
+              NavigationDestination(icon: Icon(Icons.people_outlined), label: "Accounts"),
             ],
           ),
         ),

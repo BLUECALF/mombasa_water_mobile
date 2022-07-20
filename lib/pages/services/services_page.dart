@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:gradient_ui_widgets/buttons/gradient_elevated_button.dart';
+import 'package:mombasa_water/mw_icons_icons.dart';
+
+import '../../style/gradient_colors.dart';
 
 class ServicesPage extends GetView {
 
@@ -29,10 +33,10 @@ class ServicesPage extends GetView {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                make_button(icon_name: Icons.house,function: (){}, text: "pay"),
-                make_button(icon_name: Icons.house,function: (){}, text: "Query Bill"),
-                make_button(icon_name: Icons.house,function: (){}, text: "Illegal Fee"),
-                make_button(icon_name: Icons.house,function: (){}, text: "Other Payments"),
+                make_button(icon_name: MwIcons.pay_icon,function: (){}, text: "Pay"),
+                make_button(icon_name: MwIcons.query_bill_icon,function: (){}, text: "Query Bill"),
+                make_button(icon_name: MwIcons.illegal_fee,function: (){}, text: "Illegal Fee"),
+                make_button(icon_name: MwIcons.other_payments,function: (){}, text: "Other\nPayments"),
               ],
             ),
           ),
@@ -47,11 +51,11 @@ class ServicesPage extends GetView {
               crossAxisCount: 3,
 
               children: [
-                make_button(icon_name: Icons.house,function: (){},text: "Desludging service"),
-                make_button(icon_name: Icons.house,function: (){},text: "Water Tank service"),
-                make_button(icon_name: Icons.house,function: (){},text: "Sewer service"),
-                make_button(icon_name: Icons.house,function: (){},text: "Kiosk Lic.& Admin Fee"),
-                make_button(icon_name: Icons.house,function: (){},text: "New Water LIC Fees"),
+                make_button(icon_name: MwIcons.desludging_icon,function: (){},text: "Desludging service"),
+                make_button(icon_name: MwIcons.water_tank_icon,function: (){},text: "Water Tank service"),
+                make_button(icon_name: MwIcons.sewer_icon,function: (){},text: "Sewer service"),
+                make_button(icon_name: MwIcons.kiosk_icon,function: (){},text: "Kiosk Lic.& Admin Fee"),
+                make_button(icon_name: MwIcons.lic_fee_icon,function: (){},text: "New Water LIC Fees"),
 
               ],
             ),
@@ -65,9 +69,14 @@ class ServicesPage extends GetView {
 
   Widget make_button({required IconData icon_name,required Function function,required String text})
   {
-    return ElevatedButton(
+    return GradientElevatedButton(
+      style: ElevatedButton.styleFrom(
+        fixedSize: const Size(200, 200),
+        shape: const CircleBorder(),
+      ),
+      gradient: g1,
          child:Padding(
-        padding: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(10),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

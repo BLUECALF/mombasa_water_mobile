@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:gradient_ui_widgets/buttons/gradient_elevated_button.dart';
+import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 import 'package:mombasa_water/AppController/app_controller.dart';
+import "package:mombasa_water/mw_icons_icons.dart";
+import "package:mombasa_water/style/gradient_colors.dart";
 
 
 class HomePage extends GetView {
@@ -22,6 +26,8 @@ class HomePage extends GetView {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            //Image(icon: AssetImage("others/Icon assets/app-icon-login-removebg-preview 1.svg")),
+
             SizedBox(height: 20),
             Text("Your accounts "),
             SizedBox(height: 20),
@@ -32,11 +38,11 @@ class HomePage extends GetView {
                 children: [
                   Container(
                     height: 200,width: 200,
-                    child: Card(child: Padding(
-                      padding: const EdgeInsets.all(60.0),
-                      child: TextButton(child: Text("Add account"),onPressed: (){add_account(context);},),
-
-                    ),),
+                    child: GradientCard(
+                      gradient:g1,
+                      child: make_button(
+                        icon_name: MwIcons.add,
+                        text: "Add account",function: (){add_account(context);},),),
                   ),
                   FutureBuilder(future: appController.get_user_list(),
                   builder: (context ,snapshot)
@@ -51,7 +57,9 @@ class HomePage extends GetView {
                           return Row( children: userList.map((e) =>  Container(
                             width: 250,
                             height: 200,
-                            child: Card(child: Padding(
+                            child: GradientCard(
+                              gradient:g3,
+                              child: Padding(
                               padding: const EdgeInsets.all(60.0),
                               child: Column(
                                 children: [
@@ -81,9 +89,9 @@ class HomePage extends GetView {
                 crossAxisCount: 3,
 
                 children: [
-                  make_button(icon_name: Icons.house,function: (){},text: "Desludging service"),
-                  make_button(icon_name: Icons.house,function: (){},text: "Water Tank service"),
-                  make_button(icon_name: Icons.house,function: (){},text: "Sewer service"),
+                  make_button(icon_name: MwIcons.desludging_icon,function: (){},text: "Desludging service"),
+                  make_button(icon_name: MwIcons.water_tank_icon,function: (){},text: "Water Tank service"),
+                  make_button(icon_name: MwIcons.sewer_icon,function: (){},text: "Sewer service"),
                 ],
               ),
             ),
@@ -96,7 +104,12 @@ class HomePage extends GetView {
   }
   Widget make_button({required IconData icon_name,required Function function,required String text})
   {
-    return ElevatedButton(
+    return GradientElevatedButton(
+      style: ElevatedButton.styleFrom(
+          fixedSize: const Size(100, 100),
+          shape: const CircleBorder(),
+    ),
+      gradient: g1,
       child:Padding(
         padding: const EdgeInsets.all(5.0),
         child: Column(
@@ -128,7 +141,7 @@ class HomePage extends GetView {
                   shrinkWrap: true,
                   children: [
                     ListTile(
-                      title: Text(appController.current_user.value),leading: Icon(Icons.people),
+                      title: Text(appController.current_user.value),leading: Icon(MwIcons.user_1,color: Colors.black,),
                     trailing: ElevatedButton(child: Text("Switch Account"), onPressed: (){switch_acc();},),
                     ),
                   ],
@@ -139,16 +152,16 @@ class HomePage extends GetView {
               shrinkWrap: true,
               children: [
                 ListTile(title: Text("Call Support"),leading: Icon(Icons.phone),),
-                ListTile(title: Text("FAQ"),leading: Icon(Icons.book),),
-                ListTile(title: Text("Mombasa Water Website"),leading: Icon(Icons.web),),
+                ListTile(title: Text("FAQ"),leading: Icon(MwIcons.faqs_icon),),
+                ListTile(title: Text("Mombasa Water Website"),leading: Icon(MwIcons.water_icon),),
               ],
             ),
               Text("About"),
               ListView(
                 shrinkWrap: true,
                 children: [
-                  ListTile(title: Text("Terms and Conditions"),leading: Icon(Icons.list),),
-                  ListTile(title: Text("Privacy Policy"),leading: Icon(Icons.book),),
+                  ListTile(title: Text("Terms and Conditions"),leading: Icon(MwIcons.terms_icon),),
+                  ListTile(title: Text("Privacy Policy"),leading: Icon(MwIcons.privacy_policy),),
 
                 ],
               )
