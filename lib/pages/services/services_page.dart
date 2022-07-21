@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:gradient_ui_widgets/buttons/gradient_elevated_button.dart';
 import 'package:mombasa_water/mw_icons_icons.dart';
+import 'package:mombasa_water/pages/services/services_controller.dart';
 
 import '../../style/gradient_colors.dart';
 
 class ServicesPage extends GetView {
-
+  ServicesContoller servicesController = Get.find<ServicesContoller>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +33,9 @@ class ServicesPage extends GetView {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                make_button_with_png(path: "others/svgtopng/pay-icon.png",function: (){},text: "Pay"),
+                make_button_with_png(path: "others/svgtopng/pay-icon.png",function: (){servicesController.payDialog(context);},text: "Pay"),
                 make_button(icon_name: MwIcons.query_bill_icon,function: (){}, text: "Query Bill"),
-                make_button(icon_name: MwIcons.illegal_fee,function: (){}, text: "Illegal Fee"),
+                make_button(icon_name: MwIcons.illegal_fee,function: (){servicesController.illegalFeeDialog(context);}, text: "Illegal Fee"),
                 make_button_with_png(path: "others/svgtopng/other-payments.png",function: (){},text: "Other\nPayments"),
               ],
             ),
@@ -51,17 +51,19 @@ class ServicesPage extends GetView {
               crossAxisCount: 3,
 
               children: [
-                make_button_with_png(path: "others/svgtopng/desludging icon.png",function: (){},text: "Desludging service"),
-                make_button(icon_name: MwIcons.water_tank_icon,function: (){},text: "Water Tank service"),
-                make_button(icon_name: MwIcons.sewer_icon,function: (){},text: "Sewer service"),
-                make_button_with_png(path: "others/svgtopng/kiosk-icon.png",function: (){},text: "Kiosk Lic & Admin Fee"),
-                make_button_with_png(path: "others/svgtopng/lic fee-icon.png",function: (){},text: "New Water LIC fees"),
-
+                make_button_with_png(path: "others/svgtopng/desludging icon.png",
+                    function: (){servicesController.desludgingDialog(context);},text: "Desludging service"),
+                make_button(icon_name: MwIcons.water_tank_icon,
+                    function: (){servicesController.tankServiceDialog(context);},text: "Water Tank service"),
+                make_button(icon_name: MwIcons.sewer_icon,
+                    function: (){servicesController.sewerServiceDialog(context);},text: "Sewer service"),
+                make_button_with_png(path: "others/svgtopng/kiosk-icon.png",
+                    function: (){servicesController.kioskLICServiceDialog(context);},text: "Kiosk Lic & Admin Fee"),
+                make_button_with_png(path: "others/svgtopng/lic fee-icon.png",
+                    function: (){servicesController.newLICBillDialog(context);},text: "New Water LIC fees"),
               ],
             ),
           ),
-
-
         ],
       ),
     );

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mombasa_water/AppController/app_controller.dart';
 import 'pages/accounts/accounts_page.dart';
 import 'pages/home/home_page.dart';
 import 'pages/services/services_page.dart';
 import "package:mombasa_water/mw_icons_icons.dart";
 class CommonPage extends GetView {
  var selected_index = 0.obs;
-
+ AppController appController = Get.put(AppController());
  final screens = [
    HomePage(),
    ServicesPage(),
@@ -15,6 +16,7 @@ class CommonPage extends GetView {
 
   @override
   Widget build(BuildContext context) {
+    appController.initialize_user();
     return Obx(()=>Scaffold(
         body: screens[selected_index.value],
         bottomNavigationBar: NavigationBarTheme(

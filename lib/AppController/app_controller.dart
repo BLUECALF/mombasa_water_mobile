@@ -52,5 +52,30 @@ class AppController extends GetxController {
     }
     return l;
   }
+  void initialize_user() async
+  {
+    List<String>? userlist = await get_user_list();
+    if(userlist?.length != 0)
+      {
+        //has users
+        userList = userlist!;
+        current_user.value = userlist[0];
+        current_user_data = (await get_user_data(current_user.value))!;
+      }
+    else
+      {
+        current_user.value = "No User Selected";
+        current_user_data = ["NO account","No Name","no phone"];
+      }
+  }
+  void delete_acc(String names) async
+  {
+    userList.remove(names);
+  print("user list is ${userList}");
+  final prefs = await SharedPreferences.getInstance();
+  // insert users data to storage
+  prefs.remove(names);
+  prefs.setStringList("users", userList);
+  }
 
 }

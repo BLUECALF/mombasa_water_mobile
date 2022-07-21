@@ -6,11 +6,13 @@ import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 import 'package:mombasa_water/AppController/app_controller.dart';
 import "package:mombasa_water/mw_icons_icons.dart";
 import "package:mombasa_water/style/gradient_colors.dart";
+import 'package:mombasa_water/pages/services/services_controller.dart';
 
 
 class HomePage extends GetView {
 
-  AppController appController = Get.put(AppController());
+  AppController appController = Get.find<AppController>();
+  ServicesContoller servicesController = Get.put(ServicesContoller());
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +73,49 @@ class HomePage extends GetView {
                             child: GradientCard(
                               gradient:g2,
                               child: Padding(
-                              padding: const EdgeInsets.all(60.0),
+                              padding: const EdgeInsets.all(30.0),
                               child: Column(
                                 children: [
-                                  Text("Name: ${e}"),
+                                  Text("${e}",style: TextStyle(
+                                    letterSpacing: 2,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),),
                                   SizedBox(height: 10,),
-                                  Text("Balance: Ksh"),
+                                  Text("Balance: Ksh",style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),),
+                                  Row(
+                                    children: [
+                                      GradientElevatedButton(
+                                        gradient:g3,
+                                        child: Text("Use",style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                        onPressed: () async{
+                                          appController.current_user.value = e;
+                                        appController.current_user_data = (await appController.get_user_data(e))!;
+                                        },
+                                      ),
+                                      SizedBox(width: 30,),
+                                      GradientElevatedButton(
+                                        gradient:g4,
+                                        child: Text("Delete",style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                        onPressed: () {
+                                         appController.delete_acc(e);
+                                        },
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ),),
@@ -100,9 +139,12 @@ class HomePage extends GetView {
                 crossAxisCount: 3,
 
                 children: [
-                  make_button_with_png(path: "others/svgtopng/desludging icon.png",function: (){},text: "Desludging service"),
-                  make_button(icon_name: MwIcons.water_tank_icon,function: (){},text: "Water Tank service"),
-                  make_button(icon_name: MwIcons.sewer_icon,function: (){},text: "Sewer service"),
+                  make_button_with_png(path: "others/svgtopng/desludging icon.png",
+                      function: (){servicesController.desludgingDialog(context);},text: "Desludging service"),
+                  make_button(icon_name: MwIcons.water_tank_icon,
+                      function: (){servicesController.tankServiceDialog(context);},text: "Water Tank service"),
+                  make_button(icon_name: MwIcons.sewer_icon,
+                      function: (){servicesController.sewerServiceDialog(context);},text: "Sewer service"),
                 ],
               ),
             ),
@@ -178,11 +220,17 @@ class HomePage extends GetView {
                   children: [
                     Card(
                       child: ListTile(
+                        subtitle: Text(appController.current_user_data[0]),
                         title: Text(appController.current_user.value),leading:
                        Image.asset("others/svgtopng/user 1.png"),
                       trailing: GradientElevatedButton(
                         gradient: g1,
-                        child: Text("Switch Account"),
+                        child: Text("Switch Account",
+                        style: TextStyle(
+                            fontSize: 10,
+                          color: Colors.white
+                        ),
+                        ),
                         onPressed: (){switch_acc();},),
                       ),
                     ),

@@ -16,8 +16,8 @@ Gradient g3 = LinearGradient(colors: [
   Colors.lightGreenAccent
 ]);
 Gradient g4 = LinearGradient(colors: [
-  Colors.yellowAccent,
-  Colors.lightGreenAccent
+  Colors.red,
+  Colors.orangeAccent
 ]);
 Gradient g5 = LinearGradient(
   colors: [
