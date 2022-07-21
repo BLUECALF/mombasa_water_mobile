@@ -57,74 +57,7 @@ class HomePage extends GetView {
                         icon_name: MwIcons.add,
                         text: "Add account",function: (){add_account(context);},),),
                   ),
-                  FutureBuilder(future: appController.get_user_list(),
-                  builder: (context ,snapshot)
-                    {
-                      if(snapshot.data == null)
-                        {
-                          //do nothing
-                        }
-                      else
-                        {
-                          List<String> userList = snapshot.data as List<String>;
-                          return Row( children: userList.map((e) =>  Container(
-                            width: 250,
-                            height: 200,
-                            child: GradientCard(
-                              gradient:g2,
-                              child: Padding(
-                              padding: const EdgeInsets.all(30.0),
-                              child: Column(
-                                children: [
-                                  Text("${e}",style: TextStyle(
-                                    letterSpacing: 2,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: Colors.white,
-                              ),),
-                                  SizedBox(height: 10,),
-                                  Text("Balance: Ksh",style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),),
-                                  Row(
-                                    children: [
-                                      GradientElevatedButton(
-                                        gradient:g3,
-                                        child: Text("Use",style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                        onPressed: () async{
-                                          appController.current_user.value = e;
-                                        appController.current_user_data = (await appController.get_user_data(e))!;
-                                        },
-                                      ),
-                                      SizedBox(width: 30,),
-                                      GradientElevatedButton(
-                                        gradient:g4,
-                                        child: Text("Delete",style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                        onPressed: () {
-                                         appController.delete_acc(e);
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),),
-                          ),).toList());
-                        }
-                      return Text("No users");
-                    }
-                    ,
-                  )
+                render_account_cards(appController.userList),
                 ],
               ),
             ),
@@ -406,5 +339,61 @@ class HomePage extends GetView {
           child: Icon(icon_data,color: Colors.white))
       ),
     );
+  }
+  Widget render_account_cards(List userList)
+  {
+    return Row( children: userList.map((e) =>  Container(
+      width: 250,
+      height: 200,
+      child: GradientCard(
+        gradient:g2,
+        child: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: Column(
+            children: [
+              Text("${e}",style: TextStyle(
+                letterSpacing: 2,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.white,
+              ),),
+              SizedBox(height: 10,),
+              Text("Balance: Ksh",style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),),
+              Row(
+                children: [
+                  GradientElevatedButton(
+                    gradient:g3,
+                    child: Text("Use",style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.white,
+                    ),
+                    ),
+                    onPressed: () async{
+                      appController.current_user.value = e;
+                      appController.current_user_data = (await appController.get_user_data(e))!;
+                    },
+                  ),
+                  SizedBox(width: 30,),
+                  GradientElevatedButton(
+                    gradient:g4,
+                    child: Text("Delete",style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.white,
+                    ),
+                    ),
+                    onPressed: () {
+                      appController.delete_acc(e);
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),),
+    ),).toList());
   }
 }
