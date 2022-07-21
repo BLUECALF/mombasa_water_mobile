@@ -351,18 +351,26 @@ class HomePage extends GetView {
             padding: const EdgeInsets.all(30.0),
             child: Column(
               children: [
-                Text("${e}",style: TextStyle(
+                Text("Current Balance",style: TextStyle(
+                  letterSpacing: 1,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                  color: Colors.white,
+                ),),
+                Text(" Ksh",style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),),
+                SizedBox(height: 15,),
+                Text("${e}\n${appController.get_user_data(e)}",style: TextStyle(
                   letterSpacing: 2,
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                   color: Colors.white,
                 ),),
                 SizedBox(height: 10,),
-                Text("Balance: Ksh",style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),),
+
                 Row(
                   children: [
                     GradientElevatedButton(
