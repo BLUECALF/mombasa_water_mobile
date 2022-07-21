@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AppController extends GetxController {
 
-  List<String> userList = [];
+  RxList<String> userList = [""].obs;
   var current_user = "".obs;
   List<String> current_user_data = [];
 
@@ -16,7 +16,7 @@ class AppController extends GetxController {
 
   void add_user(Map data) async
   {
-    userList = (await get_user_list())!;
+    userList.value = (await get_user_list())!;
     String names =data["names"];
     String acc_no = data["acc_no"];
     String phone = data["phone"];
@@ -31,7 +31,7 @@ class AppController extends GetxController {
     prefs.setStringList(names, userdata);
 
     // update users list
-    prefs.setStringList("users", userList);
+    prefs.setStringList("users", userList.value);
   }
   Future<List<String>?> get_user_data(String names) async
   {
@@ -58,7 +58,7 @@ class AppController extends GetxController {
     if(userlist?.length != 0)
       {
         //has users
-        userList = userlist!;
+        userList.value = userlist!;
         current_user.value = userlist[0];
         current_user_data = (await get_user_data(current_user.value))!;
       }
