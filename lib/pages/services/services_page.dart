@@ -6,21 +6,29 @@ import 'package:mombasa_water/pages/services/services_controller.dart';
 
 import '../../style/gradient_colors.dart';
 
-class ServicesPage extends GetView {
+class ServicesPage extends GetView<ServicesContoller>{
   ServicesContoller servicesController = Get.find<ServicesContoller>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 150,
-        title: Text("Services"),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.elliptical(200,20)
-          )
+        toolbarHeight: 60,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text("Services", style:TextStyle(
+                fontSize: 18,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 3
+            )),
+            TextButton.icon(icon:Icon(MwIcons.search,color: Colors.black),
+              onPressed: (){},label: Text(""),),
+          ],
         ),
         centerTitle: true,
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Colors.white,
+        shadowColor: Colors.transparent,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

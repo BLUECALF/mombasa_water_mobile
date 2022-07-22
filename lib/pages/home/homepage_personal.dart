@@ -25,7 +25,15 @@ class HomePagePersonal extends GetView<HomeController>{
         leading: TextButton.icon(icon:Icon(MwIcons.nav_menu,color: Colors.black),
           onPressed: (){homeController.openDrawer();},label: Text(""),),
         toolbarHeight: 60,
-        title: Text("Home"),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton.icon(icon:Icon(MwIcons.search,color: Colors.black),
+              onPressed: (){},label: Text(""),),
+            TextButton.icon(icon:Icon(MwIcons.notification_icon,color: Colors.black),
+              onPressed: (){},label: Text(""),),
+          ],
+        ),
         centerTitle: true,
         backgroundColor: Colors.white,
         shadowColor: Colors.transparent,

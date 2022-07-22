@@ -4,7 +4,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 class ServicesContoller extends GetxController {
-
   // methods that services will use.
   //Dialogs
   //1 pay dialog
