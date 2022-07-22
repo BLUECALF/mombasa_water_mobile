@@ -5,29 +5,34 @@ import 'package:gradient_ui_widgets/buttons/gradient_elevated_button.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 import 'package:mombasa_water/AppController/app_controller.dart';
 import "package:mombasa_water/mw_icons_icons.dart";
+import 'package:mombasa_water/pages/home/home_controller.dart';
 import "package:mombasa_water/style/gradient_colors.dart";
 import 'package:mombasa_water/pages/services/services_controller.dart';
 
 
-class HomePagePersonal extends GetView {
+class HomePagePersonal extends GetView<HomeController>{
 
   AppController appController = Get.find<AppController>();
   ServicesContoller servicesController = Get.put(ServicesContoller());
+  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: homeController.scaffoldKey,
       drawer: makeDrawer(),
       appBar: AppBar(
+        leading: TextButton.icon(icon:Icon(MwIcons.nav_menu,color: Colors.black),
+          onPressed: (){homeController.openDrawer();},label: Text(""),),
         toolbarHeight: 60,
         title: Text("Home"),
         centerTitle: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
       ),
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Image(
                 image: AssetImage("others/svgtopng/app-icon-login-removebg-preview 1.png")),
@@ -40,42 +45,75 @@ class HomePagePersonal extends GetView {
                     fontWeight: FontWeight.bold,
                     letterSpacing: 3
                 )
-
             ),
-            Text("Welcome Back ${appController.current_user.value}"),
-            Text("Water E-bill offers support for a number of accounts and is constantly expanding support for more"),
+            SizedBox(height: 20),
+            Text("Welcome Back ${appController.current_user.value}",style:TextStyle(
+                fontSize: 20,
+                color: Colors.black54,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 3
+            )),
+
             SizedBox(height: 20),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Container(
-                height: 200,width: 200,
+                height: 150,width: 300,
                 child: GradientCard(
-                  gradient:g1,
-                  child: Text("hi")),
+                  gradient:g5,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20,),
+                      Text("Your Balance",
+                          style:TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 3
+                          )
+                      ),
+                      SizedBox(height: 20,),
+                      Text("Ksh .",
+                          style:TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 3
+                          )
+                      ),
+                      SizedBox(height: 20,),
+                      Text("Last Payment is Ksh.",
+                          style:TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w100,
+                              letterSpacing: 3
+                          )
+                      ),
+                    ],
+                  )),
               ),
             ),
             SizedBox(height: 20),
-            Text("Services"),
-            SizedBox(height: 20),
-            Expanded(
-              flex: 1,
-              child: GridView.count(
-                mainAxisSpacing: 2,
-                crossAxisSpacing: 2,
-                crossAxisCount: 3,
-
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  make_button_with_png(path: "others/svgtopng/desludging icon.png",
-                      function: (){servicesController.desludgingDialog(context);},text: "Desludging service"),
-                  make_button(icon_name: MwIcons.water_tank_icon,
-                      function: (){servicesController.tankServiceDialog(context);},text: "Water Tank service"),
-                  make_button(icon_name: MwIcons.sewer_icon,
-                      function: (){servicesController.sewerServiceDialog(context);},text: "Sewer service"),
+                  make_button_with_png(path: "others/svgtopng/pay-icon.png",function: (){servicesController.payDialog(context);},text: "Pay"),
+                  make_button(icon_name: MwIcons.query_bill_icon,function: (){}, text: "Query Bill"),
+                  make_button(icon_name: MwIcons.illegal_fee,function: (){servicesController.illegalFeeDialog(context);}, text: "Illegal Fee"),
+                  make_button_with_png(path: "others/svgtopng/other-payments.png",function: (){},text: "Other\nPayments"),
                 ],
               ),
             ),
-
-
+            SizedBox(height: 30),
+            Text("Transactions",style:TextStyle(
+                fontSize: 20,
+                color: Colors.black54,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 3
+            )),
           ],
         ),
       ),
@@ -395,3 +433,4 @@ class HomePagePersonal extends GetView {
     );
   }
 }
+

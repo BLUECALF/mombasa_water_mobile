@@ -22,11 +22,9 @@ Gradient g4 = LinearGradient(colors: [
 Gradient g5 = LinearGradient(
   colors: [
     // Colors.blue,
-    Colors.lightGreenAccent,
     Colors.white,
     Colors.white,
     Colors.white,
-    Colors.lightGreenAccent,
   ],
 );
 Gradient g6 = LinearGradient(colors: [
