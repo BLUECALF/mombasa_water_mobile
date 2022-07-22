@@ -424,12 +424,26 @@ class HomePage extends GetView<HomeController>{
                    if(data == null || data.length ==0)
                      { return Text("No Account");}
                    else{
-                     return Text("${e}\n${data[0]}",style: TextStyle(
-                       letterSpacing: 2,
-                       fontWeight: FontWeight.bold,
-                       fontSize: 18,
-                       color: Colors.white,
-                     ),);
+                     return Expanded(
+                       flex: 1,
+                       child: Column(
+                         crossAxisAlignment: CrossAxisAlignment.start,
+                         children: [
+                           Text("${e}",maxLines: 1,style: TextStyle(
+                             letterSpacing: 2,
+                             fontWeight: FontWeight.bold,
+                             fontSize: 18,
+                             color: Colors.white,
+                           ),),
+                           Text("${data[0]}",style: TextStyle(
+                             letterSpacing: 2,
+                             fontWeight: FontWeight.bold,
+                             fontSize: 18,
+                             color: Colors.white,
+                           ),),
+                         ],
+                       ),
+                     );
                    }
                  },
                 ),

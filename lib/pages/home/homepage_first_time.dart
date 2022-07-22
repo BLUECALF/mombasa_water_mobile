@@ -240,7 +240,7 @@ class HomePageFirstTime extends GetView<HomeController> {
         scrollDirection: Axis.vertical,
         child: Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.all(0.0),
+            padding: EdgeInsets.all(24.0),
             child: Column(
               children: [
                 Obx(
