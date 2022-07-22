@@ -5,6 +5,7 @@ import 'package:gradient_ui_widgets/buttons/gradient_elevated_button.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 import 'package:mombasa_water/AppController/app_controller.dart';
 import "package:mombasa_water/mw_icons_icons.dart";
+import 'package:mombasa_water/pages/home/home_controller.dart';
 import 'package:mombasa_water/pages/home/homepage_first_time.dart';
 import 'package:mombasa_water/pages/home/homepage_personal.dart';
 import "package:mombasa_water/style/gradient_colors.dart";
@@ -15,7 +16,7 @@ class HomePage extends GetView {
 
   AppController appController = Get.find<AppController>();
   ServicesContoller servicesController = Get.put(ServicesContoller());
-
+  HomeController homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
    return Obx(() => Scaffold(
@@ -33,13 +34,23 @@ class HomePage extends GetView {
     else{
       return Scaffold(
         drawer: makeDrawer(),
-        appBar: AppBar(
-          toolbarHeight: 60,
-          title: Text("Home"),
-          centerTitle: true,
-          backgroundColor: Colors.black,
-          shadowColor: Colors.transparent,
-        ),
+        appBar:AppBar(
+      leading: TextButton.icon(icon:Icon(MwIcons.nav_menu,color: Colors.black),
+    onPressed: (){homeController.openDrawer();},label: Text(""),),
+    toolbarHeight: 60,
+    title: Row(
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: [
+    TextButton.icon(icon:Icon(MwIcons.search,color: Colors.black),
+    onPressed: (){},label: Text(""),),
+  TextButton.icon(icon:Icon(MwIcons.notification_icon,color: Colors.black),
+  onPressed: (){homeController.openEndDrawer();},label: Text(""),),
+  ],
+  ),
+  centerTitle: true,
+  backgroundColor: Colors.white,
+  shadowColor: Colors.transparent,
+  ),
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -82,8 +93,8 @@ class HomePage extends GetView {
               Expanded(
                 flex: 1,
                 child: GridView.count(
-                  mainAxisSpacing: 2,
-                  crossAxisSpacing: 2,
+                  mainAxisSpacing: 5,
+                  crossAxisSpacing: 5,
                   crossAxisCount: 3,
 
                   children: [
@@ -106,10 +117,10 @@ class HomePage extends GetView {
   Widget make_button({required IconData icon_name,required Function function,required String text})
   {
     return GradientElevatedButton(
-      style: ElevatedButton.styleFrom(
+      /*style: ElevatedButton.styleFrom(
           fixedSize: const Size(100, 100),
           shape: const CircleBorder(),
-    ),
+    ),*/
       gradient: g1,
       child:Padding(
         padding: const EdgeInsets.all(5.0),
@@ -131,10 +142,10 @@ class HomePage extends GetView {
   Widget make_button_with_png({required String path,required Function function,required String text})
   {
     return GradientElevatedButton(
-      style: ElevatedButton.styleFrom(
+      /*style: ElevatedButton.styleFrom(
         fixedSize: const Size(100, 100),
         shape: const CircleBorder(),
-      ),
+      ),*/
       gradient: g1,
       child:Padding(
         padding: const EdgeInsets.all(5.0),

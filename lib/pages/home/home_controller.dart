@@ -7,6 +7,9 @@ class HomeController extends GetxController {
   void openDrawer() {
     scaffoldKey.currentState?.openDrawer();
   }
+  void openEndDrawer() {
+    scaffoldKey.currentState?.openEndDrawer();
+  }
 
 
 }

@@ -97,4 +97,9 @@ class AppController extends GetxController {
     else
     {return false;}
   }
+  void logout()
+  {
+    current_user.value = "No User Selected";
+    current_user_data = ["NO account","No Name","no phone"];
+  }
 }

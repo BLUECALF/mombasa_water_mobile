@@ -8,21 +8,36 @@ import "package:mombasa_water/mw_icons_icons.dart";
 import "package:mombasa_water/style/gradient_colors.dart";
 import 'package:mombasa_water/pages/services/services_controller.dart';
 
+import 'home_controller.dart';
 
-class HomePageFirstTime extends GetView {
+
+class HomePageFirstTime extends GetView<HomeController> {
 
   AppController appController = Get.find<AppController>();
   ServicesContoller servicesController = Get.put(ServicesContoller());
+  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: homeController.scaffoldKey,
       drawer: makeDrawer(),
+      endDrawer: makeEndDrawer(),
       appBar: AppBar(
+        leading: TextButton.icon(icon:Icon(MwIcons.nav_menu,color: Colors.black),
+          onPressed: (){homeController.openDrawer();},label: Text(""),),
         toolbarHeight: 60,
-        title: Text("Home"),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton.icon(icon:Icon(MwIcons.search,color: Colors.black),
+              onPressed: (){},label: Text(""),),
+            TextButton.icon(icon:Icon(MwIcons.notification_icon,color: Colors.black),
+              onPressed: (){homeController.openEndDrawer();},label: Text(""),),
+          ],
+        ),
         centerTitle: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
       ),
       body: SafeArea(
@@ -42,13 +57,28 @@ class HomePageFirstTime extends GetView {
                 )
 
             ),
-            Text("Set Up Your Accounts "),
-            Text("Water E-bill offers support for a number of accounts and is constantly expanding support for more"),
+            SizedBox(height: 20),
+            Text("Set Up Your Accounts ",
+                style:TextStyle(
+                fontSize: 22,
+                color: Colors.black,
+                fontWeight: FontWeight.w400,
+                letterSpacing: 4
+                )
+            ),
+            SizedBox(height: 20),
+            Text("Water E-bill offers support for a number of accounts and is constantly expanding support for more",
+                style:TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w300,
+                    letterSpacing: 2
+                )),
             SizedBox(height: 20),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Container(
-                height: 200,width: 200,
+                height: 200,width: 300,
                 child: GradientCard(
                   gradient:g1,
                   child: make_button(
@@ -76,8 +106,6 @@ class HomePageFirstTime extends GetView {
                 ],
               ),
             ),
-
-
           ],
         ),
       ),
@@ -188,7 +216,19 @@ class HomePageFirstTime extends GetView {
     );
   }
   // FUNCTIONS
-
+  Drawer makeEndDrawer()
+  {
+    return Drawer(
+      child: SafeArea(
+        child: Column(
+          children: [
+            Text("Notifications"),
+            Text("no current notifications")
+          ],
+        ),
+      ),
+    );
+  }
   void add_account(BuildContext context)
   {
     final _formKey2 = GlobalKey<FormBuilderState>();
@@ -197,13 +237,12 @@ class HomePageFirstTime extends GetView {
     Get.defaultDialog(title:"Add Water account",
       onCancel: (){Get.back();} ,
       content: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.all(24.0),
+            padding: EdgeInsets.all(0.0),
             child: Column(
               children: [
-                SizedBox(height: 10,),
-                SizedBox(height: 20,),
                 Obx(
                       () => FormBuilder(
                     key: _formKey2,
