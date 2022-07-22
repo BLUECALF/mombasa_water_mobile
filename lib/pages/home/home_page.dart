@@ -50,7 +50,7 @@ class HomePage extends GetView {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: 200,width: 200,
+                    height: 200,width: 150,
                     child: GradientCard(
                       gradient:g1,
                       child: make_button(
@@ -345,12 +345,25 @@ class HomePage extends GetView {
     return Obx(() => Row( children: userList.map((e) =>  Container(
         width: 250,
         height: 200,
-        child: GradientCard(
+        child:TextButton(
+            child: GradientCard(
           gradient:g2,
           child: Padding(
-            padding: const EdgeInsets.all(30.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      icon: Icon(MwIcons.trash_icon,color: Colors.white,size: 20),
+                      onPressed: () {
+                        appController.delete_acc(e);
+                      },
+                    ),
+                  ],
+                ),
                 Text("Current Balance",style: TextStyle(
                   letterSpacing: 1,
                   fontWeight: FontWeight.bold,
@@ -363,45 +376,28 @@ class HomePage extends GetView {
                   color: Colors.white,
                 ),),
                 SizedBox(height: 15,),
-                Text("${e}\n${appController.get_user_data(e)}",style: TextStyle(
-                  letterSpacing: 2,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),),
-                SizedBox(height: 10,),
-
-                Row(
-                  children: [
-                    GradientElevatedButton(
-                      gradient:g3,
-                      child: Text("Use",style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.white,
-                      ),
-                      ),
-                      onPressed: () async{
-                        appController.current_user.value = e;
-                        appController.current_user_data = (await appController.get_user_data(e))!;
-                      },
-                    ),
-                    SizedBox(width: 30,),
-                    GradientElevatedButton(
-                      gradient:g4,
-                      child: Text("Delete",style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.white,
-                      ),
-                      ),
-                      onPressed: () {
-                        appController.delete_acc(e);
-                      },
-                    ),
-                  ],
+               FutureBuilder(future: appController.get_user_data(e),
+                  builder: (context,snapshot)
+                 {
+                   List<String>? data = snapshot.data as List<String>?;
+                   if(data == null || data.length ==0)
+                     { return Text("No Account");}
+                   else{
+                     return Text("${e}\n${data[0]}",style: TextStyle(
+                       letterSpacing: 2,
+                       fontWeight: FontWeight.bold,
+                       fontSize: 18,
+                       color: Colors.white,
+                     ),);
+                   }
+                 },
                 ),
               ],
             ),
-          ),),
+          ),),onPressed: () async{
+          appController.current_user.value = e;
+          appController.current_user_data = (await appController.get_user_data(e))!;
+        },),
       ),).toList()),
     );
   }

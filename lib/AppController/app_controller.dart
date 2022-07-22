@@ -78,4 +78,5 @@ class AppController extends GetxController {
   prefs.setStringList("users", userList);
   }
 
+
 }

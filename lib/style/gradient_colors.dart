@@ -9,7 +9,7 @@ Gradient g1 = LinearGradient(
 );
 Gradient g2 = LinearGradient(colors: [
   Colors.blueGrey,
-  Colors.blue
+  Colors.blueGrey
 ]);
 Gradient g3 = LinearGradient(colors: [
   Colors.green,
