@@ -77,6 +77,24 @@ class AppController extends GetxController {
   prefs.remove(names);
   prefs.setStringList("users", userList);
   }
-
-
+  bool isFirstTime()
+  {
+    if((userList.value.length ==1 && userList.value[0]=="") ||(userList.value.length ==0 && current_user.value =="No User Selected"))
+      {
+        // first time
+        return true;
+      }
+    else
+    {return false;}
+  }
+  bool isCurrentUserSelected()
+  {
+    if(userList.value.length > 0 && current_user.value !="No User Selected")
+    {
+      // current user is well selected.
+      return true;
+    }
+    else
+    {return false;}
+  }
 }
