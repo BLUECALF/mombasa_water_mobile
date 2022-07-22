@@ -12,7 +12,7 @@ import "package:mombasa_water/style/gradient_colors.dart";
 import 'package:mombasa_water/pages/services/services_controller.dart';
 
 
-class HomePage extends GetView {
+class HomePage extends GetView<HomeController>{
 
   AppController appController = Get.find<AppController>();
   ServicesContoller servicesController = Get.put(ServicesContoller());
@@ -33,7 +33,9 @@ class HomePage extends GetView {
     }
     else{
       return Scaffold(
+        key: homeController.scaffoldKey,
         drawer: makeDrawer(),
+        endDrawer: makeEndDrawer(),
         appBar:AppBar(
       leading: TextButton.icon(icon:Icon(MwIcons.nav_menu,color: Colors.black),
     onPressed: (){homeController.openDrawer();},label: Text(""),),
@@ -214,6 +216,19 @@ class HomePage extends GetView {
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+  Drawer makeEndDrawer()
+  {
+    return Drawer(
+      child: SafeArea(
+        child: Column(
+          children: [
+            Text("Notifications"),
+            Text("no current notifications")
+          ],
         ),
       ),
     );

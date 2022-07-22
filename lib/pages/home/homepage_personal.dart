@@ -21,6 +21,7 @@ class HomePagePersonal extends GetView<HomeController>{
     return Scaffold(
       key: homeController.scaffoldKey,
       drawer: makeDrawer(),
+      endDrawer: makeEndDrawer(),
       appBar: AppBar(
         leading: TextButton.icon(icon:Icon(MwIcons.nav_menu,color: Colors.black),
           onPressed: (){homeController.openDrawer();},label: Text(""),),
@@ -31,7 +32,7 @@ class HomePagePersonal extends GetView<HomeController>{
             TextButton.icon(icon:Icon(MwIcons.search,color: Colors.black),
               onPressed: (){},label: Text(""),),
             TextButton.icon(icon:Icon(MwIcons.notification_icon,color: Colors.black),
-              onPressed: (){},label: Text(""),),
+              onPressed: (){homeController.openEndDrawer();},label: Text(""),),
           ],
         ),
         centerTitle: true,
@@ -227,6 +228,19 @@ class HomePagePersonal extends GetView<HomeController>{
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+  Drawer makeEndDrawer()
+  {
+    return Drawer(
+      child: SafeArea(
+        child: Column(
+          children: [
+            Text("Notifications"),
+            Text("no current notifications")
+          ],
         ),
       ),
     );
