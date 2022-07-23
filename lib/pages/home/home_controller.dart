@@ -68,6 +68,27 @@ AppBar make_appBar()
     );
   }
 
+  Widget make_square_button({required IconData icon_name,required Function function,required String text})
+  {
+    return ElevatedButton(
+      child:Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon_name,size: 50,color: Colors.white,),
+              Text("$text",textAlign: TextAlign.center,style: TextStyle(
+                fontSize: 12,
+                color: Colors.white,
+              ),),
+            ]
+        ),
+      ),
+      onPressed:(){function();}
+      ,
+    );
+  }
+
   Widget make_button_with_png({required String path,required Function function,required String text})
   {
     return TextButton(
@@ -87,6 +108,28 @@ AppBar make_appBar()
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
                 fontSize: 12,
                 color: Colors.black,
+              ),),
+            ]
+        ),
+      ),
+      onPressed:(){function();}
+      ,
+    );
+  }
+
+  Widget make_square_button_with_png({required String path,required Function function,required String text})
+  {
+    return ElevatedButton(
+
+      child:Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(path,width: 50,height: 50,),
+              Text("$text",textAlign: TextAlign.center,style: TextStyle(
+                fontSize: 12,
+                color: Colors.white,
               ),),
             ]
         ),

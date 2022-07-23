@@ -1,18 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:mombasa_water/pages/services/services_controller.dart';
 
-class ServicesContoller extends GetxController {
-  //9 new water lic
-  void newLICBillDialog(BuildContext context)
-  {
-    final _formKey2 = GlobalKey<FormBuilderState>();
-    // make get popup to activate acc
-    RxString errorText = "".obs;
-    Get.defaultDialog(title:"New LIC Water Bill",
-      onCancel: (){Get.back();} ,
-      content: SingleChildScrollView(
+class NewWaterServicePage extends GetView {
+  final _formKey2 = GlobalKey<FormBuilderState>();
+  // make get popup to activate acc
+  RxString errorText = "".obs;
+  ServicesContoller servicesController = Get.find<ServicesContoller>();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: servicesController.make_appBar("New LIC Water Bill"),
+      body:  SingleChildScrollView(
         child: Container(
             alignment: Alignment.center,
             padding: EdgeInsets.all(24.0),
@@ -62,6 +62,17 @@ class ServicesContoller extends GetxController {
                           keyboardType: TextInputType.number,
                         ),
                         SizedBox(height: 10,),
+                        Container(
+                          width: Get.width,
+                          child: ElevatedButton(
+                            child: Text("Pay",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white
+                              ),
+                            ),
+                            onPressed: (){pay();},),
+                        ),
                       ],
                     ),
                   ),
@@ -69,26 +80,18 @@ class ServicesContoller extends GetxController {
               ],
             )),
       ),
-      onConfirm: () async
-      {
-        if (_formKey2.currentState?.saveAndValidate() == true) {
 
-          Map data = _formKey2.currentState!.value;
-          print("the data is ${data}");
-          // save data
-          Get.back();
-        }
-      },
     );
   }
 
-  AppBar make_appBar(String title)
+  void pay()
   {
-    return AppBar(
-      title: Text(title),
-      centerTitle: true,
-      backgroundColor: Colors.blueGrey,
-      shadowColor: Colors.transparent,
-    );
+    if(_formKey2.currentState?.saveAndValidate() == true) {
+      Map data = _formKey2.currentState!.value;
+      print("the data is ${data}");
+      // save data
+      Get.back();
+    }
   }
 }
+

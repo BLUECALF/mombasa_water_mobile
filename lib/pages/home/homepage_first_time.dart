@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 import 'package:mombasa_water/AppController/app_controller.dart';
 import "package:mombasa_water/mw_icons_icons.dart";
+import 'package:mombasa_water/pages/services/detailed_services/desludging_service_page.dart';
+import 'package:mombasa_water/pages/services/detailed_services/sewer_service_page.dart';
+import 'package:mombasa_water/pages/services/detailed_services/water_tank_service_page.dart';
 import "package:mombasa_water/style/gradient_colors.dart";
 import 'package:mombasa_water/pages/services/services_controller.dart';
 
@@ -59,13 +62,27 @@ class HomePageFirstTime extends GetView<HomeController> {
             SizedBox(height: 20),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Container(
-                height: 200,width: 300,
-                child: GradientCard(
-                  gradient:g1,
-                  child: homeController.make_button(
-                    icon_name: MwIcons.add,
-                    text: "Add account",function: (){homeController.add_account(context);},),),
+              child: TextButton(
+                onPressed: (){homeController.add_account(context);},
+                child: Container(
+                  height: 200,width: 300,
+                  child: GradientCard(
+                    gradient:g1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Icon(MwIcons.add,color: Colors.white,size: 100,),
+                        Text("Add Account",
+                            style:TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 4
+                            )
+                        ),
+                      ],
+                    ),),
+                ),
               ),
             ),
             SizedBox(height: 20),
@@ -80,11 +97,11 @@ class HomePageFirstTime extends GetView<HomeController> {
 
                 children: [
                   homeController.make_button_with_png(path: "others/svgtopng/desludging icon.png",
-                      function: (){servicesController.desludgingDialog(context);},text: "Desludging service"),
+                      function: (){Get.to(DesludgingServicePage());},text: "Desludging service"),
                   homeController.make_button(icon_name: MwIcons.water_tank_icon,
-                      function: (){servicesController.tankServiceDialog(context);},text: "Water Tank service"),
+                      function: (){Get.to(WaterTankServicePage());},text: "Water Tank service"),
                   homeController.make_button(icon_name: MwIcons.sewer_icon,
-                      function: (){servicesController.sewerServiceDialog(context);},text: "Sewer service"),
+                      function: (){Get.to(SewerServicePage());},text: "Sewer service"),
                 ],
               ),
             ),

@@ -6,6 +6,10 @@ import "package:mombasa_water/mw_icons_icons.dart";
 import 'package:mombasa_water/pages/home/home_controller.dart';
 import 'package:mombasa_water/pages/home/homepage_first_time.dart';
 import 'package:mombasa_water/pages/home/homepage_personal.dart';
+import 'package:mombasa_water/pages/services/detailed_services/desludging_service_page.dart';
+import 'package:mombasa_water/pages/services/detailed_services/illegal_fee_page.dart';
+import 'package:mombasa_water/pages/services/detailed_services/sewer_service_page.dart';
+import 'package:mombasa_water/pages/services/detailed_services/water_tank_service_page.dart';
 import "package:mombasa_water/style/gradient_colors.dart";
 import 'package:mombasa_water/pages/services/services_controller.dart';
 
@@ -65,7 +69,7 @@ class HomePage extends GetView<HomeController>{
                         gradient:g1,
                         child: homeController.make_button(
                           icon_name: MwIcons.add,
-                          text: "Add account",function: (){homeController.add_account(context);},),),
+                          text: "",function: (){homeController.add_account(context);},),),
                     ),
                     homeController.render_account_cards(appController.userList),
                   ],
@@ -77,17 +81,18 @@ class HomePage extends GetView<HomeController>{
               Expanded(
                 flex: 1,
                 child: GridView.count(
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 5,
-                  crossAxisCount: 3,
+                  mainAxisSpacing: 15,
+                  crossAxisSpacing: 15,
+                  crossAxisCount: 2,
 
                   children: [
-                    homeController.make_button_with_png(path: "others/svgtopng/desludging icon.png",
-                        function: (){servicesController.desludgingDialog(context);},text: "Desludging service"),
-                    homeController.make_button(icon_name: MwIcons.water_tank_icon,
-                        function: (){servicesController.tankServiceDialog(context);},text: "Water Tank service"),
-                    homeController.make_button(icon_name: MwIcons.sewer_icon,
-                        function: (){servicesController.sewerServiceDialog(context);},text: "Sewer service"),
+                    homeController.make_square_button_with_png(path: "others/svgtopng/desludging icon.png",
+                        function: (){Get.to(DesludgingServicePage());},text: "Desludging service"),
+                    homeController.make_square_button(icon_name: MwIcons.water_tank_icon,
+                        function: (){Get.to(WaterTankServicePage());},text: "Water Tank service"),
+                    homeController.make_square_button(icon_name: MwIcons.sewer_icon,
+                        function: (){Get.to(SewerServicePage());},text: "Sewer service"),
+                    homeController.make_square_button(icon_name: MwIcons.illegal_fee,function: (){Get.to(IllegalFeePage());}, text: "Illegal Fee"),
                   ],
                 ),
               ),
