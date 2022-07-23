@@ -79,21 +79,23 @@ class ServicesPage extends GetView<ServicesContoller>{
 
   Widget make_button({required IconData icon_name,required Function function,required String text})
   {
-    return GradientElevatedButton(
-      style: ElevatedButton.styleFrom(
-        fixedSize: const Size(200, 200),
-        shape: const CircleBorder(),
-      ),
-      gradient: g1,
-         child:Padding(
-        padding: const EdgeInsets.all(10),
+    return TextButton(
+
+      child:Padding(
+        padding: const EdgeInsets.all(5.0),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon_name,size: 50,),
+              Container(
+                  height: 60,
+                  width: 60,
+                  decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.blue),
+                  child: Icon(icon_name,size: 50,color: Colors.white,)),
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
-                fontSize: 12,
-                color: Colors.white,
+                fontSize: 14,
+                color: Colors.black,
               ),),
             ]
         ),
@@ -104,21 +106,23 @@ class ServicesPage extends GetView<ServicesContoller>{
   }
   Widget make_button_with_png({required String path,required Function function,required String text})
   {
-    return GradientElevatedButton(
-      style: ElevatedButton.styleFrom(
-        fixedSize: const Size(200, 200),
-        shape: const CircleBorder(),
-      ),
-      gradient: g1,
+    return TextButton(
+
       child:Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(5.0),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(path,width: 50,height: 50,),
+              Container(
+                  height: 60,width: 60,
+                  decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.blue),
+                  child: Image.asset(path,width: 50,height: 50,)
+              ),
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
-                fontSize: 12,
-                color: Colors.white,
+                fontSize: 14,
+                color: Colors.black,
               ),),
             ]
         ),

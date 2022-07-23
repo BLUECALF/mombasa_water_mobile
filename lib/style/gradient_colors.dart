@@ -28,6 +28,6 @@ Gradient g5 = LinearGradient(
   ],
 );
 Gradient g6 = LinearGradient(colors: [
-  Colors.purple,
-  Colors.purpleAccent
+  Colors.transparent,
+  Colors.transparent
 ]);
