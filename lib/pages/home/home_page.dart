@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 import 'package:mombasa_water/AppController/app_controller.dart';
 import "package:mombasa_water/mw_icons_icons.dart";
 import 'package:mombasa_water/pages/home/home_controller.dart';
@@ -10,7 +9,6 @@ import 'package:mombasa_water/pages/services/detailed_services/desludging_servic
 import 'package:mombasa_water/pages/services/detailed_services/illegal_fee_page.dart';
 import 'package:mombasa_water/pages/services/detailed_services/sewer_service_page.dart';
 import 'package:mombasa_water/pages/services/detailed_services/water_tank_service_page.dart';
-import "package:mombasa_water/style/gradient_colors.dart";
 import 'package:mombasa_water/pages/services/services_controller.dart';
 
 
@@ -40,60 +38,72 @@ class HomePage extends GetView<HomeController>{
         endDrawer: homeController.makeEndDrawer(),
         appBar:homeController.make_appBar(),
         body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(height: 20),
-              Text("Mombasa Water",
-                  style:TextStyle(
-                      fontSize: 18,
-                      color: Colors.lightBlueAccent,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 3
-                  )
-
-              ),
-              Text("Your accounts "),
-              SizedBox(height: 20),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Container(
+            margin: EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Your accounts,",
+                    style:TextStyle(
+                        fontSize: 19,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2
+                    )),
+                SizedBox(height: 10),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: 200,width: 100,
+                        child: Card(
+                          color: Colors.blue,
+                          child: homeController.make_button(
+                            icon_name: MwIcons.add,
+                            text: "",function: (){homeController.add_account(context);},),),
+                      ),
+                      homeController.render_account_cards(appController.userList),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text("Services",
+                    style:TextStyle(
+                        fontSize: 19,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2
+                    )),
+                SizedBox(height: 10),
+                Row(
                   children: [
-                    Container(
-                      height: 200,width: 150,
-                      child: GradientCard(
-                        gradient:g1,
-                        child: homeController.make_button(
-                          icon_name: MwIcons.add,
-                          text: "",function: (){homeController.add_account(context);},),),
+                    Expanded(
+                      child: homeController.make_square_button_with_png(path: "others/svgtopng/desludging icon.png",
+                          function: (){Get.to(DesludgingServicePage());},text: "Desludging service"),
                     ),
-                    homeController.render_account_cards(appController.userList),
+                    SizedBox(width: 20,),
+                    Expanded(
+                      child: homeController.make_square_button(icon_name: MwIcons.water_tank_icon,
+                          function: (){Get.to(WaterTankServicePage());},text: "Water Tank service"),
+                    ),
                   ],
                 ),
-              ),
-              SizedBox(height: 20),
-              Text("Services"),
-              SizedBox(height: 20),
-              Expanded(
-                flex: 1,
-                child: GridView.count(
-                  mainAxisSpacing: 15,
-                  crossAxisSpacing: 15,
-                  crossAxisCount: 2,
-
+                SizedBox(height: 10,),
+               Row(
                   children: [
-                    homeController.make_square_button_with_png(path: "others/svgtopng/desludging icon.png",
-                        function: (){Get.to(DesludgingServicePage());},text: "Desludging service"),
-                    homeController.make_square_button(icon_name: MwIcons.water_tank_icon,
-                        function: (){Get.to(WaterTankServicePage());},text: "Water Tank service"),
-                    homeController.make_square_button(icon_name: MwIcons.sewer_icon,
-                        function: (){Get.to(SewerServicePage());},text: "Sewer service"),
-                    homeController.make_square_button(icon_name: MwIcons.illegal_fee,function: (){Get.to(IllegalFeePage());}, text: "Illegal Fee"),
+                    Expanded(
+                      child: homeController.make_square_button(icon_name: MwIcons.sewer_icon,
+                          function: (){Get.to(SewerServicePage());},text: "Sewer service"),
+                    ),
+                    SizedBox(width: 20,),
+                    Expanded(child: homeController.make_square_button(icon_name: MwIcons.illegal_fee,function: (){Get.to(IllegalFeePage());}, text: "Illegal Fee")),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );}
