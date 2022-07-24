@@ -25,9 +25,22 @@ AppBar make_appBar()
   return AppBar(
     leading: TextButton.icon(icon:Icon(MwIcons.nav_menu,color: Colors.black),
       onPressed: (){openDrawer();},label: Text(""),),
-    toolbarHeight: 60,
-    title: Image(
-            image: AssetImage("others/svgtopng/app-icon-login-removebg-preview 1.png")),
+    toolbarHeight: 70,
+    title: Column(
+      children: [
+        Image(
+                image: AssetImage("others/svgtopng/app-icon-login-removebg-preview 1.png")),
+        SizedBox(height: 10),
+        Text("Mombasa Water",
+            style:TextStyle(
+                fontSize: 15,
+                color: Colors.lightBlueAccent,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 2
+            )
+        ),
+      ],
+    ),
     actions:[
         TextButton.icon(icon:Icon(MwIcons.search,color: Colors.black),
           onPressed: (){Get.to(SearchPage());},label: Text(""),),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
@@ -26,83 +27,100 @@ class HomePageFirstTime extends GetView<HomeController> {
       endDrawer: homeController.makeEndDrawer(),
       appBar: homeController.make_appBar(),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SizedBox(height: 20),
-            Text("Mombasa Water",
-                style:TextStyle(
-                    fontSize: 18,
-                    color: Colors.lightBlueAccent,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 3
-                )
-
-            ),
-            SizedBox(height: 20),
-            Text("Set Up Your Accounts ",
-                style:TextStyle(
-                fontSize: 22,
-                color: Colors.black,
-                fontWeight: FontWeight.w400,
-                letterSpacing: 4
-                )
-            ),
-            SizedBox(height: 20),
-            Text("Water E-bill offers support for a number of accounts and is constantly expanding support for more",
-                style:TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w300,
-                    letterSpacing: 2
-                )),
-            SizedBox(height: 20),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: TextButton(
+        child: Container(
+          margin: EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20),
+              Text("Set Up Your Accounts ",
+                  style:TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 4
+                  )
+              ),
+              SizedBox(height: 10),
+              Text("Water E-bill offers support for a number of accounts and is constantly expanding support for more",
+                  style:TextStyle(
+                      fontSize: 11,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300,
+                      letterSpacing: 2
+                  )),
+              SizedBox(height: 10),
+              Container(
+                height: 150,width: 300,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: TextButton(
                 onPressed: (){homeController.add_account(context);},
-                child: Container(
-                  height: 200,width: 300,
-                  child: GradientCard(
-                    gradient:g1,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(MwIcons.add,color: Colors.white,size: 100,),
-                        Text("Add Account",
-                            style:TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 4
-                            )
-                        ),
-                      ],
-                    ),),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(MwIcons.add,color: Colors.white,size: 40,),
+                      Text("Add Account",
+                          style:TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 4
+                          )
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 20),
-            Text("Services"),
-            SizedBox(height: 20),
-            Expanded(
-              flex: 1,
-              child: GridView.count(
-                mainAxisSpacing: 2,
-                crossAxisSpacing: 2,
-                crossAxisCount: 3,
 
+              SizedBox(height: 10),
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  homeController.make_button_with_png(path: "others/svgtopng/desludging icon.png",
-                      function: (){Get.to(DesludgingServicePage());},text: "Desludging service"),
-                  homeController.make_button(icon_name: MwIcons.water_tank_icon,
-                      function: (){Get.to(WaterTankServicePage());},text: "Water Tank service"),
-                  homeController.make_button(icon_name: MwIcons.sewer_icon,
-                      function: (){Get.to(SewerServicePage());},text: "Sewer service"),
+                  Text("Services",
+               style:TextStyle(
+                   fontSize: 19,
+                   color: Colors.black,
+                   fontWeight: FontWeight.bold,
+                   letterSpacing: 2
+               )
+                  ),
+                  TextButton(child: Text("See all",
+                      style:TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.blue
+                  )),onPressed: (){})
                 ],
               ),
-            ),
-          ],
+              SizedBox(height: 10),
+              Container(
+                width: Get.width,
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: homeController.make_button_with_png(path: "others/svgtopng/desludging icon.png",
+                          function: (){Get.to(DesludgingServicePage());},text: "Desludging service"),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: homeController.make_button(icon_name: MwIcons.water_tank_icon,
+                          function: (){Get.to(WaterTankServicePage());},text: "Water Tank service"),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: homeController.make_button(icon_name: MwIcons.sewer_icon,
+                          function: (){Get.to(SewerServicePage());},text: "Sewer service"),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
