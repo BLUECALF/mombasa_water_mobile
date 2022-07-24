@@ -29,9 +29,6 @@ class HomePageFirstTime extends GetView<HomeController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image(
-                image: AssetImage("others/svgtopng/app-icon-login-removebg-preview 1.png")),
-
             SizedBox(height: 20),
             Text("Mombasa Water",
                 style:TextStyle(

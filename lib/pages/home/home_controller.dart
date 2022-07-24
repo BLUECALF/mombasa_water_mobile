@@ -4,6 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 import 'package:mombasa_water/AppController/app_controller.dart';
 import 'package:mombasa_water/mw_icons_icons.dart';
+import 'package:mombasa_water/pages/search/search_page.dart';
 import 'package:mombasa_water/style/gradient_colors.dart';
 
 class HomeController extends GetxController {
@@ -25,15 +26,15 @@ AppBar make_appBar()
     leading: TextButton.icon(icon:Icon(MwIcons.nav_menu,color: Colors.black),
       onPressed: (){openDrawer();},label: Text(""),),
     toolbarHeight: 60,
-    title: Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
+    title: Image(
+            image: AssetImage("others/svgtopng/app-icon-login-removebg-preview 1.png")),
+    actions:[
         TextButton.icon(icon:Icon(MwIcons.search,color: Colors.black),
-          onPressed: (){},label: Text(""),),
+          onPressed: (){Get.to(SearchPage());},label: Text(""),),
         TextButton.icon(icon:Icon(MwIcons.notification_icon,color: Colors.black),
           onPressed: (){openEndDrawer();},label: Text(""),),
       ],
-    ),
+
     centerTitle: true,
     backgroundColor: Colors.white,
     shadowColor: Colors.transparent,

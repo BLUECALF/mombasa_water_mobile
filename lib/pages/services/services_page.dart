@@ -20,19 +20,16 @@ class ServicesPage extends GetView<ServicesContoller>{
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 60,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text("Services", style:TextStyle(
+        title:Text("Services", style:TextStyle(
                 fontSize: 18,
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 3
             )),
-            TextButton.icon(icon:Icon(MwIcons.search,color: Colors.black),
+         actions:[
+           TextButton.icon(icon:Icon(MwIcons.search,color: Colors.black),
               onPressed: (){},label: Text(""),),
-          ],
-        ),
+         ],
         centerTitle: true,
         backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
