@@ -5,6 +5,7 @@ import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 import 'package:mombasa_water/AppController/app_controller.dart';
 import 'package:mombasa_water/mw_icons_icons.dart';
 import 'package:mombasa_water/pages/drawer_pages/left_drawer_contents.dart';
+import 'package:mombasa_water/pages/drawer_pages/notification_page.dart';
 import 'package:mombasa_water/pages/search/search_page.dart';
 import 'package:mombasa_water/style/gradient_colors.dart';
 
@@ -12,12 +13,6 @@ class HomeController extends GetxController {
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   AppController appController = Get.find<AppController>();
 
-  void openDrawer() {
-    scaffoldKey.currentState?.openDrawer();
-  }
-  void openEndDrawer() {
-    scaffoldKey.currentState?.openEndDrawer();
-  }
 
 
   /// USED FUNCTIONS FOR WIDGETS
@@ -46,7 +41,7 @@ AppBar make_appBar()
         TextButton.icon(icon:Icon(MwIcons.search,color: Colors.black),
           onPressed: (){Get.to(SearchPage());},label: Text(""),),
         TextButton.icon(icon:Icon(MwIcons.notification_icon,color: Colors.black),
-          onPressed: (){openEndDrawer();},label: Text(""),),
+          onPressed: (){Get.to(NotificationPage());},label: Text(""),),
       ],
 
     centerTitle: true,
@@ -153,73 +148,7 @@ AppBar make_appBar()
       ,
     );
   }
-  Drawer makeDrawer()
-  {
-    return Drawer(
-      child: SafeArea(
-        child: Container(
-          height: 600,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text("My Account"),
-              Obx(()=> ListView(
-                shrinkWrap: true,
-                children: [
-                  Card(
-                    child: ListTile(
-                      subtitle: Text(appController.current_user_data[0]),
-                      title: Text(appController.current_user.value),leading:
-                    Image.asset("others/svgtopng/user 1.png"),
-                      trailing: GradientElevatedButton(
-                        gradient: g1,
-                        child: Text("Switch Account",
-                          style: TextStyle(
-                              fontSize: 10,
-                              color: Colors.white
-                          ),
-                        ),
-                        onPressed: (){switch_acc();},),
-                    ),
-                  ),
-                ],
-              ),
-              ),
-              Text("Support"),
-              ListView(
-                shrinkWrap: true,
-                children: [
-                  make_list_tile(text: "Call Support", icon_data: MwIcons.suport_icon),
-                  make_list_tile(text: "FAQ", icon_data: MwIcons.faqs_icon),
-                  make_list_tile(text: "Mombasa Water Website", icon_data: MwIcons.water_icon),
-                ],
-              ),
-              Text("About"),
-              ListView(
-                shrinkWrap: true,
-                children: [
-                  make_list_tile(text: "Terms and Conditions", icon_data: MwIcons.terms_icon),
-                  make_list_tile(text: "Privacy Policy", icon_data: MwIcons.privacy_policy),                ],
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-  Drawer makeEndDrawer()
-  {
-    return Drawer(
-      child: SafeArea(
-        child: Column(
-          children: [
-            Text("Notifications"),
-            Text("no current notifications")
-          ],
-        ),
-      ),
-    );
-  }
+
 // FUNCTIONS
 
   void add_account(BuildContext context)

@@ -34,8 +34,6 @@ class HomePage extends GetView<HomeController>{
     else{
       return Scaffold(
         key: homeController.scaffoldKey,
-        drawer: homeController.makeDrawer(),
-        endDrawer: homeController.makeEndDrawer(),
         appBar:homeController.make_appBar(),
         body: SafeArea(
           child: Container(
