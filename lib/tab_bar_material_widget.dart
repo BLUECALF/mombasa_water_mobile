@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mombasa_water/mw_icons_icons.dart';
 
 import 'pages/common_page_controller.dart';
 
@@ -19,7 +18,7 @@ class TabBarMaterialWidget extends GetView {
               children: [
                 BuildTabItem_png(index: 0, path: "others/svgtopng/home-icon.png", label: "Home"),
                 BuildTabItem_png(index: 1, path: "others/svgtopng/services-icon.png", label: "Services"),
-                BuildTabItem_png(index: 2, path: "others/svgtopng/add-acc icon.png", label: "Accounts"),
+                BuildTabItem_png(index: 2, path: "others/svgtopng/user 1.png", label: "Accounts"),
               ],
             ),
           ],
