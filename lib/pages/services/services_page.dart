@@ -34,49 +34,64 @@ class ServicesPage extends GetView<ServicesContoller>{
         backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          SizedBox(height: 20),
-          Text("Pay Bill"),
-          SizedBox(height: 20),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                make_button_with_png(path: "others/svgtopng/pay-icon.png",function: (){Get.to(PayPage());},text: "Pay"),
-                make_button(icon_name: MwIcons.query_bill_icon,function: (){Get.to(QueryBillPage());}, text: "Query Bill"),
-                make_button(icon_name: MwIcons.illegal_fee,function: (){Get.to(IllegalFeePage());}, text: "Illegal Fee"),
-                make_button_with_png(path: "others/svgtopng/other-payments.png",function: (){Get.to(OtherPaymentsPage());},text: "Other\nPayments"),
-              ],
-            ),
-          ),
-          SizedBox(height: 20),
-          Text("Fee Payment"),
-          SizedBox(height: 20),
-          Expanded(
-            flex: 1,
-            child: GridView.count(
-              mainAxisSpacing: 2,
-              crossAxisSpacing: 2,
-              crossAxisCount: 3,
+      body: Container(
+        margin: EdgeInsets.all(20),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Pay Bill",
+                  style:TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  letterSpacing: 2)),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    make_button_with_png(path: "others/svgtopng/pay-icon.png",function: (){Get.to(PayPage());},text: "Pay"),
+                    make_button(icon_name: MwIcons.query_bill_icon,function: (){Get.to(QueryBillPage());}, text: "Query Bill"),
+                    make_button(icon_name: MwIcons.illegal_fee,function: (){Get.to(IllegalFeePage());}, text: "Illegal Fee"),
+                    make_button_with_png(path: "others/svgtopng/other-payments.png",function: (){Get.to(OtherPaymentsPage());},text: "Other\nPayments"),
+                  ],
+                ),
+              ),
+              Text("Fee Payment",
+                style:TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    letterSpacing: 2)),
 
-              children: [
-                make_button_with_png(path: "others/svgtopng/desludging icon.png",
-                    function: (){Get.to(DesludgingServicePage());},text: "Desludging service"),
-                make_button(icon_name: MwIcons.water_tank_icon,
-                    function: (){Get.to(WaterTankServicePage());},text: "Water Tank service"),
-                make_button(icon_name: MwIcons.sewer_icon,
-                    function: (){Get.to(SewerServicePage());},text: "Sewer service"),
-                make_button_with_png(path: "others/svgtopng/kiosk-icon.png",
-                    function: (){Get.to(KioskServicePage());},text: "Kiosk Lic & Admin Fee"),
-                make_button_with_png(path: "others/svgtopng/lic fee-icon.png",
-                    function: (){Get.to(NewWaterServicePage());},text: "New Water LIC fees"),
-              ],
-            ),
+                Row(
+                  children: [
+                  Expanded(
+                    child: make_button_with_png(path: "others/svgtopng/desludging icon.png",
+                        function: (){Get.to(DesludgingServicePage());},text: "Desludging service"),
+                  ),
+                  Expanded(
+                    child: make_button(icon_name: MwIcons.water_tank_icon,
+                        function: (){Get.to(WaterTankServicePage());},text: "Water Tank service"),
+                  ),
+                  Expanded(
+                    child: make_button(icon_name: MwIcons.sewer_icon,
+                        function: (){Get.to(SewerServicePage());},text: "Sewer service"),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  make_button_with_png(path: "others/svgtopng/kiosk-icon.png",
+                      function: (){Get.to(KioskServicePage());},text: "Kiosk Lic & Admin Fee"),
+                  make_button_with_png(path: "others/svgtopng/lic fee-icon.png",
+                      function: (){Get.to(NewWaterServicePage());},text: "New Water LIC fees"),
+                ],
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
