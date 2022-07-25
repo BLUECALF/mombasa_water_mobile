@@ -4,6 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 import 'package:mombasa_water/AppController/app_controller.dart';
 import 'package:mombasa_water/mw_icons_icons.dart';
+import 'package:mombasa_water/pages/drawer_pages/left_drawer_contents.dart';
 import 'package:mombasa_water/pages/search/search_page.dart';
 import 'package:mombasa_water/style/gradient_colors.dart';
 
@@ -24,7 +25,7 @@ AppBar make_appBar()
 {
   return AppBar(
     leading: TextButton.icon(icon:Icon(MwIcons.nav_menu,color: Colors.black),
-      onPressed: (){openDrawer();},label: Text(""),),
+      onPressed: (){Get.to(LeftDrawer());},label: Text(""),),
     toolbarHeight: 70,
     title: Column(
       children: [
@@ -355,16 +356,14 @@ AppBar make_appBar()
   }
   Widget make_list_tile({required String text,required IconData icon_data})
   {
-    return Card(
-      child: ListTile(
-          title: Text(text),leading: Container(
-          padding: EdgeInsets.all(15),
-          decoration: new BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.blue
-          ),
-          child: Icon(icon_data,color: Colors.white))
-      ),
+    return ListTile(
+        title: Text(text),leading: Container(
+        padding: EdgeInsets.all(15),
+        decoration: new BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.blue
+        ),
+        child: Icon(icon_data,color: Colors.white))
     );
   }
   Widget render_account_cards(List userList)

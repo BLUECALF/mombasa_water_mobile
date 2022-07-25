@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 import 'package:mombasa_water/AppController/app_controller.dart';
 import "package:mombasa_water/mw_icons_icons.dart";
+import 'package:mombasa_water/pages/common_page_controller.dart';
 import 'package:mombasa_water/pages/services/detailed_services/desludging_service_page.dart';
 import 'package:mombasa_water/pages/services/detailed_services/sewer_service_page.dart';
 import 'package:mombasa_water/pages/services/detailed_services/water_tank_service_page.dart';
-import "package:mombasa_water/style/gradient_colors.dart";
 import 'package:mombasa_water/pages/services/services_controller.dart';
 
 import 'home_controller.dart';
@@ -18,6 +17,7 @@ class HomePageFirstTime extends GetView<HomeController> {
   AppController appController = Get.find<AppController>();
   ServicesContoller servicesController = Get.put(ServicesContoller());
   HomeController homeController = Get.put(HomeController());
+  CommonPageController commonPageController = Get.find<CommonPageController>();
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +93,9 @@ class HomePageFirstTime extends GetView<HomeController> {
                       fontWeight: FontWeight.w400,
                         decoration: TextDecoration.underline,
                         decorationColor: Colors.blue
-                  )),onPressed: (){})
+                  )),onPressed: (){
+                    commonPageController.selected_index.value = 1;
+                  })
                 ],
               ),
               SizedBox(height: 10),
