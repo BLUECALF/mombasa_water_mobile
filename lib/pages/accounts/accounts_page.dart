@@ -27,16 +27,15 @@ class AccountsPage extends GetView {
             Center(
               child: Column(
                 children: [
-                SizedBox(height: 20),
                 CircleAvatar(child: Image.asset("others/svgtopng/user 1.png",color: Colors.white,),radius: 60,),
-                  SizedBox(height: 20),
+                  SizedBox(height: 10),
                 Text("${appController.current_user.value}",style:TextStyle(
                     fontSize: 22,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 3
                 )),
-                  SizedBox(height: 20),
+                  SizedBox(height: 10),
                 Text("Account Number",
                     style:TextStyle(
                     fontSize: 18,
@@ -52,7 +51,7 @@ class AccountsPage extends GetView {
                         fontWeight: FontWeight.bold,
                         letterSpacing: 2
                     )),
-                  SizedBox(height: 30),
+                  SizedBox(height: 20),
                   ListView(
                     shrinkWrap: true,
                     children: [
@@ -73,16 +72,14 @@ class AccountsPage extends GetView {
   }
   Widget make_list_tile({required String text,required IconData icon_data})
   {
-    return Card(
-      child: ListTile(
-          title: Text(text),leading: Container(
-          padding: EdgeInsets.all(15),
-          decoration: new BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.blue
-          ),
-          child: Icon(icon_data,color: Colors.white))
-      ),
+    return ListTile(
+        title: Text(text),leading: Container(
+        padding: EdgeInsets.all(15),
+        decoration: new BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.blue
+        ),
+        child: Icon(icon_data,color: Colors.white))
     );
   }
 }
