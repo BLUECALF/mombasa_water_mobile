@@ -17,9 +17,9 @@ class AppController extends GetxController {
   void add_user(Map data) async
   {
     userList.value = (await get_user_list())!;
-    String names =data["names"];
+    String names = "John Doe";
     String acc_no = data["acc_no"];
-    String phone = data["phone"];
+    String phone = "911";
 
     List<String> userdata = [acc_no,names,phone];
     print("user data is ${userdata}");

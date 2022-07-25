@@ -156,26 +156,29 @@ AppBar make_appBar()
     final _formKey2 = GlobalKey<FormBuilderState>();
     // make get popup to activate acc
     RxString errorText = "".obs;
-    Get.defaultDialog(title:"Add Water account",
-      onCancel: (){Get.back();} ,
+    Get.defaultDialog(
+      title:"Add Account",
       content: SingleChildScrollView(
         child: Container(
             alignment: Alignment.center,
             padding: EdgeInsets.all(24.0),
             child: Column(
               children: [
-                SizedBox(height: 10,),
-                SizedBox(height: 20,),
                 Obx(
                       () => FormBuilder(
                     key: _formKey2,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text("Account Number"),
+                        SizedBox(height: 15,),
                         FormBuilderTextField(
                           name: 'acc_no',
                           decoration: InputDecoration(
-                              labelText: 'Enter Account number',
-                              border: OutlineInputBorder(),
+                            hintText: "Enter Account No.",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)
+                              ),
                               errorText: errorText.value.length > 0
                                   ? errorText.value
                                   : null),
@@ -189,42 +192,16 @@ AppBar make_appBar()
                           ]),
                           keyboardType: TextInputType.number,
                         ),
-                        FormBuilderTextField(
-                          name: 'names',
-                          decoration: InputDecoration(
-                              labelText: 'Enter Your Full name',
-                              border: OutlineInputBorder(),
-                              errorText: errorText.value.length > 0
-                                  ? errorText.value
-                                  : null),
-                          onChanged: (String ?val) {
-                            errorText.value = '';
-                          },
-                          // valueTransformer: (text) => num.tryParse(text),
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(context),
-                          ]),
-                          keyboardType: TextInputType.text,
+                        SizedBox(height: 20,),
+                        Container(
+                          width: Get.width,
+                          child: ElevatedButton(onPressed: (){login(_formKey2);}, child: Text("Login")
+                          ),
                         ),
-                        FormBuilderTextField(
-                          name: 'phone',
-                          decoration: InputDecoration(
-                              labelText: 'Enter Phone number',
-                              border: OutlineInputBorder(),
-                              errorText: errorText.value.length > 0
-                                  ? errorText.value
-                                  : null),
-                          onChanged: (String ?val) {
-                            errorText.value = '';
-                          },
-                          // valueTransformer: (text) => num.tryParse(text),
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(context),
-                            FormBuilderValidators.numeric(context)
-                          ]),
-                          keyboardType: TextInputType.number,
-                        ),
-
+                        SizedBox(height: 20,),
+                        Row(
+                        children:[
+                        Expanded(child: Text("Don't have an account ?")),TextButton(onPressed: (){}, child: Text("Register"))]),
                       ],
                     ),
                   ),
@@ -232,18 +209,18 @@ AppBar make_appBar()
               ],
             )),
       ),
-      onConfirm: () async
-      {
-        if (_formKey2.currentState?.saveAndValidate() == true) {
-
-          Map data = _formKey2.currentState!.value;
-          print("the data is ${data}");
-          // save data
-          appController.add_user(data);
-          Get.back();
-        }
-      },
     );
+  }
+  void login(var _formKey2) async
+  {
+    if (_formKey2.currentState?.saveAndValidate() == true) {
+
+      Map data = _formKey2.currentState!.value;
+      print("the data is ${data}");
+      // save data
+      appController.add_user(data);
+      Get.back();
+    }
   }
   void switch_acc()
   {
@@ -370,5 +347,4 @@ AppBar make_appBar()
     ),).toList()),
     );
   }
-
 }
