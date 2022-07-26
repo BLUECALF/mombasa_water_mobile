@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mombasa_water/style/colors.dart';
 
 class ServicesContoller extends GetxController {
 
@@ -14,7 +15,7 @@ class ServicesContoller extends GetxController {
           letterSpacing: 3
       ),),
       centerTitle: true,
-      backgroundColor: Colors.blue,
+      backgroundColor: color_blue_light,
       shadowColor: Colors.transparent,
     );
   }
