@@ -218,7 +218,9 @@ AppBar make_appBar()
                         Expanded(child: Text("Don't have an account ?",
                         style:TextStyle(fontFamily: "Poppins",
                         fontSize: 13,
-                        ))),TextButton(onPressed: (){}, child: Text("Register",style: TextStyle(fontFamily: "Poppins",),))]),
+                        ))),TextButton(onPressed: (){}, child: Text("Register",style: TextStyle(
+                            color: color_blue_light,
+                            fontFamily: "Poppins",),))]),
                       ],
                     ),
                   ),
