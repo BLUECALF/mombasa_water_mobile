@@ -10,6 +10,7 @@ import 'package:mombasa_water/pages/services/detailed_services/illegal_fee_page.
 import 'package:mombasa_water/pages/services/detailed_services/sewer_service_page.dart';
 import 'package:mombasa_water/pages/services/detailed_services/water_tank_service_page.dart';
 import 'package:mombasa_water/pages/services/services_controller.dart';
+import 'package:mombasa_water/style/colors.dart';
 
 
 class HomePage extends GetView<HomeController>{
@@ -58,7 +59,7 @@ class HomePage extends GetView<HomeController>{
                       Container(
                         height: 200,width: 100,
                         child: Card(
-                          color: Colors.blue,
+                          color: color_blue_light,
                           child: homeController.make_button(
                             icon_name: MwIcons.add,
                             text: "",function: (){homeController.add_account(context);},),),
