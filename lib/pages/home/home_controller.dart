@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:gradient_ui_widgets/gradient_ui_widgets.dart';
 import 'package:mombasa_water/AppController/app_controller.dart';
 import 'package:mombasa_water/mw_icons_icons.dart';
 import 'package:mombasa_water/pages/drawer_pages/left_drawer_contents.dart';
 import 'package:mombasa_water/pages/drawer_pages/notification_page.dart';
 import 'package:mombasa_water/pages/search/search_page.dart';
-import 'package:mombasa_water/style/gradient_colors.dart';
+import 'package:mombasa_water/style/colors.dart';
 
 class HomeController extends GetxController {
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -30,7 +29,7 @@ AppBar make_appBar()
         Text("Mombasa Water",
             style:TextStyle(
                 fontSize: 15,
-                color: Colors.lightBlueAccent,
+                color: color_blue_light,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 2
             )
@@ -64,7 +63,7 @@ AppBar make_appBar()
                   width: 60,
                   decoration: new BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.blue),
+                    color: color_blue_light),
                   child: Icon(icon_name,size: 50,color: Colors.white,)),
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
                 fontFamily: "Poppins",
@@ -82,6 +81,9 @@ AppBar make_appBar()
   Widget make_square_button({required IconData icon_name,required Function function,required String text})
   {
     return ElevatedButton(
+       style: ElevatedButton.styleFrom(
+            primary: color_blue_excess_light
+        ),
       child:Padding(
         padding: const EdgeInsets.all(5.0),
         child: Column(
@@ -114,7 +116,7 @@ AppBar make_appBar()
                 height: 60,width: 60,
                   decoration: new BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.blue),
+                      color: color_blue_light),
                   child: Image.asset(path,width: 50,height: 50,)
               ),
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
@@ -133,7 +135,9 @@ AppBar make_appBar()
   Widget make_square_button_with_png({required String path,required Function function,required String text})
   {
     return ElevatedButton(
-
+      style:ElevatedButton.styleFrom(
+          primary: color_blue_excess_light
+      ),
       child:Padding(
         padding: const EdgeInsets.all(5.0),
         child: Column(
@@ -200,7 +204,11 @@ AppBar make_appBar()
                         SizedBox(height: 20,),
                         Container(
                           width: Get.width,
-                          child: ElevatedButton(onPressed: (){login(_formKey2);}, child: Text("Login",
+                          child: ElevatedButton(
+                              style:ElevatedButton.styleFrom(
+                                  primary: color_blue_dark
+                              ),
+                              onPressed: (){login(_formKey2);}, child: Text("Login",
                           style:TextStyle(fontFamily: "Poppins",))
                           ),
                         ),
@@ -276,7 +284,7 @@ AppBar make_appBar()
         padding: EdgeInsets.all(15),
         decoration: new BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.blue
+            color: color_blue_light
         ),
         child: Icon(icon_data,color: Colors.white))
     );
@@ -287,8 +295,8 @@ AppBar make_appBar()
       width: 250,
       height: 225,
       child:TextButton(
-        child: GradientCard(
-          gradient:g2,
+        child: Card(
+          color: color_blue_dark,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
