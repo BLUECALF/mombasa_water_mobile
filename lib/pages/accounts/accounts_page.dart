@@ -32,7 +32,7 @@ class AccountsPage extends GetView {
                 children: [
                 CircleAvatar(child: Image.asset("others/svgtopng/user 1.png",color: Colors.white,),radius: 60,),
                   SizedBox(height: 10),
-                Text("${appController.current_user.value}",style:TextStyle(
+                Text("${appController.current_account_data[1]}",style:TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 22,
                     color: Colors.black,
@@ -48,7 +48,7 @@ class AccountsPage extends GetView {
                     letterSpacing: 2
                 )),
                   SizedBox(height: 15),
-                Text("${appController.current_user_data[0]}",
+                Text("${appController.current_account_data[0]}",
                     style:TextStyle(
                         fontFamily: "Poppins",
                         fontSize: 14,

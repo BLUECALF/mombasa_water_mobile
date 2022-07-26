@@ -36,8 +36,8 @@ class LeftDrawer extends GetView {
                 shrinkWrap: true,
                 children: [
                   ListTile(
-                    subtitle: Text(appController.current_user_data[0]),
-                    title: Text(appController.current_user.value),leading:
+                    subtitle: Text(appController.current_account.value),
+                    title: Text(appController.current_account_data[1]),leading:
                   Image.asset("others/svgtopng/user 1.png"),
                     trailing: OutlinedButton(
                       style: OutlinedButton.styleFrom(

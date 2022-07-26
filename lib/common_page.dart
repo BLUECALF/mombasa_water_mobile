@@ -17,7 +17,7 @@ class CommonPage extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    appController.initialize_user();
+    appController.initialize_account();
     return Obx(()=>Scaffold(
         body: screens[commonPageController.selected_index.value],
         bottomNavigationBar: TabBarMaterialWidget()

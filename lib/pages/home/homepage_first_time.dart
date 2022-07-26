@@ -13,7 +13,7 @@ import 'package:mombasa_water/style/colors.dart';
 import 'home_controller.dart';
 
 
-class HomePageFirstTime extends GetView<HomeController> {
+class HomePageFirstTime extends GetView<HomeController>  {
 
   AppController appController = Get.find<AppController>();
   ServicesContoller servicesController = Get.put(ServicesContoller());

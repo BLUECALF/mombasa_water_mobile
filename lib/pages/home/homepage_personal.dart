@@ -30,7 +30,7 @@ class HomePagePersonal extends GetView<HomeController>{
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Welcome Back ${appController.current_user.value},",style:TextStyle(
+              Text("Welcome Back ${appController.current_account_data[1]},",style:TextStyle(
                   fontFamily: "Poppins",
                   fontSize: 20,
                   color: Colors.black54,

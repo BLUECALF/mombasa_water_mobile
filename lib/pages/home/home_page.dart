@@ -28,7 +28,7 @@ class HomePage extends GetView<HomeController>{
   {
     if(appController.isFirstTime())
     {return HomePageFirstTime();}
-    else if(appController.isCurrentUserSelected())
+    else if(appController.isCurrentAccountSelected())
     {
       return HomePagePersonal();
     }
@@ -64,7 +64,7 @@ class HomePage extends GetView<HomeController>{
                             icon_name: MwIcons.add,
                             text: "",function: (){homeController.add_account(context);},),),
                       ),
-                      homeController.render_account_cards(appController.userList),
+                      homeController.render_account_cards(appController.accountList),
                     ],
                   ),
                 ),

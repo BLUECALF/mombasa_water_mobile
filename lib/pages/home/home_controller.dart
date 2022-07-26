@@ -237,15 +237,15 @@ AppBar make_appBar()
       Map data = _formKey2.currentState!.value;
       print("the data is ${data}");
       // save data
-      appController.add_user(data);
+      appController.add_account(data);
       Get.back();
     }
   }
   void switch_acc()
   {
     Get.defaultDialog(
-        title: "Click to switch account", titleStyle: TextStyle(fontFamily: "Poppins",),
-        content: FutureBuilder(future: appController.get_user_list(),
+        title: "Switch Accounts", titleStyle: TextStyle(fontFamily: "Poppins",),
+        content: FutureBuilder(future: appController.get_account_list(),
           builder: (context ,snapshot)
           {
             if(snapshot.data == null)
@@ -254,21 +254,38 @@ AppBar make_appBar()
             }
             else
             {
-              List<String> userList = snapshot.data as List<String>;
+              List<String> accountList = snapshot.data as List<String>;
               return Container(
                 height: 400,
-                child: ListView(children: userList.map((e) => Card(
-                  child: ListTile(
-                    leading: Icon(Icons.people),
-                    title: Text(e,style: TextStyle(fontFamily: "Poppins",),),
-                    onTap: () async
-                    {
-                      appController.current_user.value = e;
-                      appController.current_user_data = (await appController.get_user_data(e))!;
-                      Get.back();
-                    },
+                child: ListView(children: accountList.map((e) => ListTile(
+                  leading: Container(
+                      padding: EdgeInsets.all(15),
+                      decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.black26
+                      ),
+                      child: Image.asset("others/svgtopng/user 1.png"),),
+                  title: FutureBuilder(future: appController.get_account_data(e),
+                  builder: (context, snapshot)
+                      {
+                        if(snapshot.data == null)
+                          {
+                            return Text("No Accounts ,Please add one");
+                          }
+                        List<String> accountdata = snapshot.data as List<String>;
+                        return Text(accountdata[1],style: TextStyle(fontFamily: "Poppins",));
+
+                      }
 
                   ),
+                  subtitle: Text(e,style: TextStyle(fontFamily: "Poppins",),),
+                  onTap: () async
+                  {
+                    appController.current_account.value = e;
+                    appController.current_account_data = (await appController.get_account_data(e))!;
+                    Get.back();
+                  },
+
                 )).toList(),),
               );
 
@@ -291,9 +308,9 @@ AppBar make_appBar()
         child: Icon(icon_data,color: Colors.white))
     );
   }
-  Widget render_account_cards(List userList)
+  Widget render_account_cards(List accountList)
   {
-    return Obx(() => Row( children: userList.map((e) =>  Container(
+    return Obx(() => Row( children: accountList.map((e) =>  Container(
       width: 250,
       height: 225,
       child:TextButton(
@@ -329,7 +346,7 @@ AppBar make_appBar()
                   color: Colors.white,
                 ),),
                 SizedBox(height: 15,),
-                FutureBuilder(future: appController.get_user_data(e),
+                FutureBuilder(future: appController.get_account_data(e),
                   builder: (context,snapshot)
                   {
                     List<String>? data = snapshot.data as List<String>?;
@@ -341,7 +358,7 @@ AppBar make_appBar()
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("${e}",maxLines: 1,style: TextStyle(
+                            Text("${data[1]}",maxLines: 1,style: TextStyle(
                               fontFamily: "Poppins",
                               letterSpacing: 2,
                               fontWeight: FontWeight.bold,
@@ -365,8 +382,8 @@ AppBar make_appBar()
               ],
             ),
           ),),onPressed: () async{
-        appController.current_user.value = e;
-        appController.current_user_data = (await appController.get_user_data(e))!;
+        appController.current_account.value = e;
+        appController.current_account_data = (await appController.get_account_data(e))!;
       },),
     ),).toList()),
     );
