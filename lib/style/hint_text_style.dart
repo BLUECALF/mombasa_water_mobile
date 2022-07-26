@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:mombasa_water/style/colors.dart';
 var btn_color = Colors.blue;
 TextStyle myHintStyle()
 {
@@ -8,6 +9,6 @@ TextStyle myHintStyle()
 ButtonStyle myButtonStyle()
 {
  return  ElevatedButton.styleFrom(
- primary: Colors.blue
+ primary: color_blue_dark
 );
 }

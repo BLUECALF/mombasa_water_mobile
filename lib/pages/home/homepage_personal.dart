@@ -86,7 +86,7 @@ class HomePagePersonal extends GetView<HomeController>{
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    homeController. make_button_with_png(path: "others/svgtopng/pay-icon.png",function: (){Get.to(PayPage());},text: "Pay"),
+                    homeController.make_button_with_png(path: "others/svgtopng/pay-icon.png",function: (){Get.to(PayPage());},text: "Pay"),
                     homeController.make_button(icon_name: MwIcons.query_bill_icon,function: (){Get.to(QueryBillPage());}, text: "Query Bill"),
                     homeController.make_button(icon_name: MwIcons.illegal_fee,function: (){Get.to(IllegalFeePage());}, text: "Illegal Fee"),
                     homeController.make_button_with_png(path: "others/svgtopng/other-payments.png",function: (){Get.to(OtherPaymentsPage());},text: "Other\nPayments"),

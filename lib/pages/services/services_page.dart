@@ -11,6 +11,7 @@ import 'package:mombasa_water/pages/services/detailed_services/query_bill_page.d
 import 'package:mombasa_water/pages/services/detailed_services/sewer_service_page.dart';
 import 'package:mombasa_water/pages/services/detailed_services/water_tank_service_page.dart';
 import 'package:mombasa_water/pages/services/services_controller.dart';
+import 'package:mombasa_water/style/colors.dart';
 
 
 class ServicesPage extends GetView<ServicesContoller>{
@@ -114,7 +115,7 @@ class ServicesPage extends GetView<ServicesContoller>{
                   width: 60,
                   decoration: new BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.blue),
+                      color: color_blue_light),
                   child: Icon(icon_name,size: 50,color: Colors.white,)),
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
                 fontFamily: "Poppins",
@@ -141,7 +142,7 @@ class ServicesPage extends GetView<ServicesContoller>{
                   height: 60,width: 60,
                   decoration: new BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.blue),
+                      color: color_blue_light),
                   child: Image.asset(path,width: 50,height: 50,)
               ),
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
