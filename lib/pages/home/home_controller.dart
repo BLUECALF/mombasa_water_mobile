@@ -165,7 +165,7 @@ AppBar make_appBar()
       content: SingleChildScrollView(
         child: Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.all(24.0),
+            padding: EdgeInsets.all(10),
             child: Column(
               children: [
                 Obx(
@@ -208,7 +208,9 @@ AppBar make_appBar()
                         Row(
                         children:[
                         Expanded(child: Text("Don't have an account ?",
-                        style:TextStyle(fontFamily: "Poppins",))),TextButton(onPressed: (){}, child: Text("Register",style: TextStyle(fontFamily: "Poppins",),))]),
+                        style:TextStyle(fontFamily: "Poppins",
+                        fontSize: 13,
+                        ))),TextButton(onPressed: (){}, child: Text("Register",style: TextStyle(fontFamily: "Poppins",),))]),
                       ],
                     ),
                   ),
@@ -283,7 +285,7 @@ AppBar make_appBar()
   {
     return Obx(() => Row( children: userList.map((e) =>  Container(
       width: 250,
-      height: 200,
+      height: 225,
       child:TextButton(
         child: GradientCard(
           gradient:g2,
@@ -338,9 +340,8 @@ AppBar make_appBar()
                             ),),
                             Text("${data[0]}",style: TextStyle(
                               fontFamily: "Poppins",
-                              letterSpacing: 2,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                              letterSpacing: 4,
+                              fontSize: 16,
                               color: Colors.white,
                             ),),
                           ],

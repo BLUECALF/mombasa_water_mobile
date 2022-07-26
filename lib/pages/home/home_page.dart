@@ -44,9 +44,9 @@ class HomePage extends GetView<HomeController>{
               children: [
                 Text("Your accounts,",
                     style:TextStyle(
+                        fontFamily: "Poppins",
                         fontSize: 19,
                         color: Colors.black,
-                        fontWeight: FontWeight.bold,
                         letterSpacing: 2
                     )),
                 SizedBox(height: 10),
@@ -70,9 +70,9 @@ class HomePage extends GetView<HomeController>{
                 SizedBox(height: 10),
                 Text("Services",
                     style:TextStyle(
+                        fontFamily: "Poppins",
                         fontSize: 19,
                         color: Colors.black,
-                        fontWeight: FontWeight.bold,
                         letterSpacing: 2
                     )),
                 SizedBox(height: 10),
@@ -80,12 +80,12 @@ class HomePage extends GetView<HomeController>{
                   children: [
                     Expanded(
                       child: homeController.make_square_button_with_png(path: "others/svgtopng/desludging icon.png",
-                          function: (){Get.to(DesludgingServicePage());},text: "Desludging service"),
+                          function: (){Get.to(DesludgingServicePage());},text: "Desludging Service"),
                     ),
                     SizedBox(width: 20,),
                     Expanded(
                       child: homeController.make_square_button(icon_name: MwIcons.water_tank_icon,
-                          function: (){Get.to(WaterTankServicePage());},text: "Water Tank service"),
+                          function: (){Get.to(WaterTankServicePage());},text: "Water Tank Service"),
                     ),
                   ],
                 ),
@@ -94,7 +94,7 @@ class HomePage extends GetView<HomeController>{
                   children: [
                     Expanded(
                       child: homeController.make_square_button(icon_name: MwIcons.sewer_icon,
-                          function: (){Get.to(SewerServicePage());},text: "Sewer service"),
+                          function: (){Get.to(SewerServicePage());},text: "Sewer Service"),
                     ),
                     SizedBox(width: 20,),
                     Expanded(child: homeController.make_square_button(icon_name: MwIcons.illegal_fee,function: (){Get.to(IllegalFeePage());}, text: "Illegal Fee")),
