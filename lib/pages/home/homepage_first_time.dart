@@ -8,6 +8,7 @@ import 'package:mombasa_water/pages/services/detailed_services/desludging_servic
 import 'package:mombasa_water/pages/services/detailed_services/sewer_service_page.dart';
 import 'package:mombasa_water/pages/services/detailed_services/water_tank_service_page.dart';
 import 'package:mombasa_water/pages/services/services_controller.dart';
+import 'package:mombasa_water/style/colors.dart';
 
 import 'home_controller.dart';
 
@@ -54,7 +55,7 @@ class HomePageFirstTime extends GetView<HomeController> {
               Container(
                 height: 150,width: 300,
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: color_blue_light,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: TextButton(
                 onPressed: (){homeController.add_account(context);},
@@ -95,7 +96,7 @@ class HomePageFirstTime extends GetView<HomeController> {
                           fontFamily: "Poppins",
                       fontWeight: FontWeight.w400,
                         decoration: TextDecoration.underline,
-                        decorationColor: Colors.blue
+                        decorationColor: color_blue_light
                   )),onPressed: (){
                     commonPageController.selected_index.value = 1;
                   })
