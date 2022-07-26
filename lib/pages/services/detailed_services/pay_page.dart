@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:mombasa_water/pages/services/services_controller.dart';
+import 'package:mombasa_water/style/hint_text_style.dart';
 
 class PayPage extends GetView {
   final _formKey2 = GlobalKey<FormBuilderState>();
@@ -27,7 +28,8 @@ class PayPage extends GetView {
                         FormBuilderTextField(
                           name: 'phone',
                           decoration: InputDecoration(
-                              labelText: 'Enter Phone Number',
+                              hintText: 'Enter Phone Number',
+                              hintStyle: myHintStyle(),
                               border: OutlineInputBorder(),
                               errorText: errorText.value.length > 0
                                   ? errorText.value
@@ -46,7 +48,8 @@ class PayPage extends GetView {
                         FormBuilderTextField(
                           name: 'amount',
                           decoration: InputDecoration(
-                              labelText: 'Enter Amount',
+                              hintText: 'Enter Amount',
+                              hintStyle: myHintStyle(),
                               border: OutlineInputBorder(),
                               errorText: errorText.value.length > 0
                                   ? errorText.value
@@ -65,9 +68,11 @@ class PayPage extends GetView {
                         Container(
                           width: Get.width,
                           child: ElevatedButton(
+                            style: myButtonStyle(),
                             child: Text("Pay",
                               style: TextStyle(
-                                  fontSize: 16,
+                                  fontFamily: "Poppins",
+                                  fontSize: 17,
                                   color: Colors.white
                               ),
                             ),
