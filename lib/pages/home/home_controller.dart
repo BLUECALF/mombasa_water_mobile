@@ -67,6 +67,7 @@ AppBar make_appBar()
                     color: Colors.blue),
                   child: Icon(icon_name,size: 50,color: Colors.white,)),
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
+                fontFamily: "Poppins",
                 fontSize: 12,
                 color: Colors.black,
               ),),
@@ -88,6 +89,7 @@ AppBar make_appBar()
             children: [
               Icon(icon_name,size: 50,color: Colors.white,),
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
+                fontFamily: "Poppins",
                 fontSize: 12,
                 color: Colors.white,
               ),),
@@ -116,6 +118,7 @@ AppBar make_appBar()
                   child: Image.asset(path,width: 50,height: 50,)
               ),
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
+                fontFamily: "Poppins",
                 fontSize: 12,
                 color: Colors.black,
               ),),
@@ -138,6 +141,7 @@ AppBar make_appBar()
             children: [
               Image.asset(path,width: 50,height: 50,),
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
+                fontFamily: "Poppins",
                 fontSize: 12,
                 color: Colors.white,
               ),),
@@ -157,7 +161,7 @@ AppBar make_appBar()
     // make get popup to activate acc
     RxString errorText = "".obs;
     Get.defaultDialog(
-      title:"Add Account",
+      title:"Add Account" ,titleStyle: TextStyle(fontFamily: "Poppins",),
       content: SingleChildScrollView(
         child: Container(
             alignment: Alignment.center,
@@ -170,7 +174,8 @@ AppBar make_appBar()
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Account Number"),
+                        Text("Account Number",
+                        style: TextStyle(fontFamily: "Poppins",)),
                         SizedBox(height: 15,),
                         FormBuilderTextField(
                           name: 'acc_no',
@@ -195,13 +200,15 @@ AppBar make_appBar()
                         SizedBox(height: 20,),
                         Container(
                           width: Get.width,
-                          child: ElevatedButton(onPressed: (){login(_formKey2);}, child: Text("Login")
+                          child: ElevatedButton(onPressed: (){login(_formKey2);}, child: Text("Login",
+                          style:TextStyle(fontFamily: "Poppins",))
                           ),
                         ),
                         SizedBox(height: 20,),
                         Row(
                         children:[
-                        Expanded(child: Text("Don't have an account ?")),TextButton(onPressed: (){}, child: Text("Register"))]),
+                        Expanded(child: Text("Don't have an account ?",
+                        style:TextStyle(fontFamily: "Poppins",))),TextButton(onPressed: (){}, child: Text("Register",style: TextStyle(fontFamily: "Poppins",),))]),
                       ],
                     ),
                   ),
@@ -225,7 +232,7 @@ AppBar make_appBar()
   void switch_acc()
   {
     Get.defaultDialog(
-        title: "Click to switch account",
+        title: "Click to switch account", titleStyle: TextStyle(fontFamily: "Poppins",),
         content: FutureBuilder(future: appController.get_user_list(),
           builder: (context ,snapshot)
           {
@@ -241,7 +248,7 @@ AppBar make_appBar()
                 child: ListView(children: userList.map((e) => Card(
                   child: ListTile(
                     leading: Icon(Icons.people),
-                    title: Text(e),
+                    title: Text(e,style: TextStyle(fontFamily: "Poppins",),),
                     onTap: () async
                     {
                       appController.current_user.value = e;
@@ -263,7 +270,7 @@ AppBar make_appBar()
   Widget make_list_tile({required String text,required IconData icon_data})
   {
     return ListTile(
-        title: Text(text),leading: Container(
+        title: Text(text,style: TextStyle(fontFamily: "Poppins",),),leading: Container(
         padding: EdgeInsets.all(15),
         decoration: new BoxDecoration(
             shape: BoxShape.circle,
@@ -297,12 +304,14 @@ AppBar make_appBar()
                   ],
                 ),
                 Text("Current Balance",style: TextStyle(
+                  fontFamily: "Poppins",
                   letterSpacing: 1,
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                   color: Colors.white,
                 ),),
                 Text(" Ksh",style: TextStyle(
+                  fontFamily: "Poppins",
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -321,12 +330,14 @@ AppBar make_appBar()
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("${e}",maxLines: 1,style: TextStyle(
+                              fontFamily: "Poppins",
                               letterSpacing: 2,
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                               color: Colors.white,
                             ),),
                             Text("${data[0]}",style: TextStyle(
+                              fontFamily: "Poppins",
                               letterSpacing: 2,
                               fontWeight: FontWeight.bold,
                               fontSize: 18,

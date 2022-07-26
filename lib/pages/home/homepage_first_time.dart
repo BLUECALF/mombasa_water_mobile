@@ -34,6 +34,7 @@ class HomePageFirstTime extends GetView<HomeController> {
               SizedBox(height: 20),
               Text("Set Up Your Accounts ",
                   style:TextStyle(
+                      fontFamily: "Poppins",
                   fontSize: 20,
                   color: Colors.black,
                   fontWeight: FontWeight.w400,
@@ -43,7 +44,8 @@ class HomePageFirstTime extends GetView<HomeController> {
               SizedBox(height: 10),
               Text("Water E-bill offers support for a number of accounts and is constantly expanding support for more",
                   style:TextStyle(
-                      fontSize: 11,
+                      fontFamily: "Poppins",
+                      fontSize: 10,
                       color: Colors.black,
                       fontWeight: FontWeight.w300,
                       letterSpacing: 2
@@ -62,6 +64,7 @@ class HomePageFirstTime extends GetView<HomeController> {
                       Icon(MwIcons.add,color: Colors.white,size: 40,),
                       Text("Add Account",
                           style:TextStyle(
+                              fontFamily: "Poppins",
                               fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -80,6 +83,7 @@ class HomePageFirstTime extends GetView<HomeController> {
                   Text("Services",
                style:TextStyle(
                    fontSize: 19,
+                   fontFamily: "Poppins",
                    color: Colors.black,
                    fontWeight: FontWeight.bold,
                    letterSpacing: 2
@@ -88,6 +92,7 @@ class HomePageFirstTime extends GetView<HomeController> {
                   TextButton(child: Text("See all",
                       style:TextStyle(
                       color: Colors.black,
+                          fontFamily: "Poppins",
                       fontWeight: FontWeight.w400,
                         decoration: TextDecoration.underline,
                         decorationColor: Colors.blue
@@ -104,17 +109,17 @@ class HomePageFirstTime extends GetView<HomeController> {
                     Expanded(
                       flex: 1,
                       child: homeController.make_button_with_png(path: "others/svgtopng/desludging icon.png",
-                          function: (){Get.to(DesludgingServicePage());},text: "Desludging service"),
+                          function: (){Get.to(DesludgingServicePage());},text: "Desludging Service"),
                     ),
                     Expanded(
                       flex: 1,
                       child: homeController.make_button(icon_name: MwIcons.water_tank_icon,
-                          function: (){Get.to(WaterTankServicePage());},text: "Water Tank service"),
+                          function: (){Get.to(WaterTankServicePage());},text: "Water Tank Service"),
                     ),
                     Expanded(
                       flex: 1,
                       child: homeController.make_button(icon_name: MwIcons.sewer_icon,
-                          function: (){Get.to(SewerServicePage());},text: "Sewer service"),
+                          function: (){Get.to(SewerServicePage());},text: "Sewer Service"),
                     ),
                   ],
                 ),
