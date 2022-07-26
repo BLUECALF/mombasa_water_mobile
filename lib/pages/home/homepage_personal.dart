@@ -31,13 +31,14 @@ class HomePagePersonal extends GetView<HomeController>{
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Welcome Back ${appController.current_user.value},",style:TextStyle(
+                  fontFamily: "Poppins",
                   fontSize: 20,
                   color: Colors.black54,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 3
               )),
 
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Container(
@@ -47,40 +48,39 @@ class HomePagePersonal extends GetView<HomeController>{
                       gradient:g5,
                       child: Column(
                         children: [
-                          SizedBox(height: 20,),
+                          SizedBox(height: 10,),
                           SizedBox(width: Get.width,),
                           Text("Your Balance",
                               style:TextStyle(
+                                  fontFamily: "Poppins",
                                   fontSize: 20,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.bold,
                                   letterSpacing: 3
                               )
                           ),
-                          SizedBox(height: 20,),
+                          SizedBox(height: 10,),
                           Text("Ksh .",
                               style:TextStyle(
+                                  fontFamily: "Poppins",
                                   fontSize: 20,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.bold,
                                   letterSpacing: 3
                               )
                           ),
-                          SizedBox(height: 20,),
+                          SizedBox(height: 10,),
                           Text("Last Payment is Ksh.",
                               style:TextStyle(
+                                  fontFamily: "Poppins",
                                   fontSize: 12,
                                   color: Colors.black,
                                   letterSpacing: 2
                               )
                           ),
-                          SizedBox(height: 20,),
                         ],
                       )),
                   ),
                 ),
               ),
-              SizedBox(height: 20),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -93,11 +93,10 @@ class HomePagePersonal extends GetView<HomeController>{
                   ],
                 ),
               ),
-              SizedBox(height: 30),
               Text("Transactions", style:TextStyle(
-                  fontSize: 19,
+                  fontFamily: "Poppins",
+                  fontSize: 16,
                   color: Colors.black,
-                  fontWeight: FontWeight.bold,
                   letterSpacing: 2
               )),
             ],
