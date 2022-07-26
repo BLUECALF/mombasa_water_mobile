@@ -21,11 +21,11 @@ class ServicesPage extends GetView<ServicesContoller>{
       appBar: AppBar(
         toolbarHeight: 60,
         title:Text("Services", style:TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 3
-            )),
+            fontFamily: "Poppins",
+            fontSize: 20,
+            color: Colors.black,
+            letterSpacing: 3
+        ),),
          actions:[
            TextButton.icon(icon:Icon(MwIcons.search,color: Colors.black),
               onPressed: (){},label: Text(""),),
@@ -39,12 +39,14 @@ class ServicesPage extends GetView<ServicesContoller>{
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 20,),
               Text("Pay Bill",
                   style:TextStyle(
-                  fontSize: 16,
+                      fontFamily: "Poppins",
+                  fontSize: 13,
                   color: Colors.black,
                   letterSpacing: 2)),
               SingleChildScrollView(
@@ -59,9 +61,11 @@ class ServicesPage extends GetView<ServicesContoller>{
                   ],
                 ),
               ),
+              SizedBox(height: 20,),
               Text("Fee Payment",
                 style:TextStyle(
-                    fontSize: 16,
+                    fontFamily: "Poppins",
+                    fontSize: 13,
                     color: Colors.black,
                     letterSpacing: 2)),
 
@@ -113,7 +117,8 @@ class ServicesPage extends GetView<ServicesContoller>{
                       color: Colors.blue),
                   child: Icon(icon_name,size: 50,color: Colors.white,)),
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
-                fontSize: 14,
+                fontFamily: "Poppins",
+                fontSize: 12,
                 color: Colors.black,
               ),),
             ]
@@ -140,7 +145,8 @@ class ServicesPage extends GetView<ServicesContoller>{
                   child: Image.asset(path,width: 50,height: 50,)
               ),
               Text("$text",textAlign: TextAlign.center,style: TextStyle(
-                fontSize: 14,
+                fontFamily: "Poppins",
+                fontSize: 12,
                 color: Colors.black,
               ),),
             ]
