@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mombasa_water/mw_icons_icons.dart';
+import 'package:mombasa_water/style/colors.dart';
+import 'package:mombasa_water/style/hint_text_style.dart';
 
 import 'pages/common_page_controller.dart';
 
@@ -34,6 +35,7 @@ class TabBarMaterialWidget extends GetView {
       {
         //you have been selected
         return ElevatedButton(
+          style: myButtonStyle(),
           onPressed: (){
             commonPageController.selected_index.value = index;
           },
@@ -87,7 +89,7 @@ class TabBarMaterialWidget extends GetView {
       return Container(
         height: 80,width: 80,
         decoration: BoxDecoration(
-            color: Colors.blue,
+            color: color_blue_dark,
             borderRadius: BorderRadius.all(Radius.circular(20))),
         child: TextButton(
           onPressed: (){
