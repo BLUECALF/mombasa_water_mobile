@@ -44,7 +44,7 @@ class PayPage extends GetView {
                           ]),
                           keyboardType: TextInputType.number,
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 20,),
                         FormBuilderTextField(
                           name: 'amount',
                           decoration: InputDecoration(
@@ -64,7 +64,7 @@ class PayPage extends GetView {
                           ]),
                           keyboardType: TextInputType.number,
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 20,),
                         Container(
                           width: Get.width,
                           child: ElevatedButton(

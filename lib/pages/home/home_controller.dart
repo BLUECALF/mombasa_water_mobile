@@ -338,12 +338,14 @@ AppBar make_appBar()
                               fontSize: 18,
                               color: Colors.white,
                             ),),
-                            Text("${data[0]}",style: TextStyle(
-                              fontFamily: "Poppins",
-                              letterSpacing: 4,
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),),
+                            Expanded(
+                              child: Text("${data[0]}",style: TextStyle(
+                                fontFamily: "Poppins",
+                                letterSpacing: 4,
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),),
+                            ),
                           ],
                         ),
                       );

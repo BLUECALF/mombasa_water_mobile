@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:mombasa_water/pages/services/services_controller.dart';
+import 'package:mombasa_water/style/hint_text_style.dart';
 
 class WaterTankServicePage extends GetView {
   final _formKey2 = GlobalKey<FormBuilderState>();
@@ -40,7 +41,8 @@ class WaterTankServicePage extends GetView {
                         FormBuilderTextField(
                           name: 'names',
                           decoration: InputDecoration(
-                              labelText: 'Enter Customer Name',
+                              hintText: 'Enter Customer Name',
+                              hintStyle: myHintStyle(),
                               border: OutlineInputBorder(),
                               errorText: errorText.value.length > 0
                                   ? errorText.value
@@ -54,11 +56,12 @@ class WaterTankServicePage extends GetView {
                           ]),
                           keyboardType: TextInputType.text,
                         ),
-                        SizedBox(height: 5,),
+                        SizedBox(height: 20,),
                         FormBuilderTextField(
                           name: 'phone',
                           decoration: InputDecoration(
-                              labelText: 'Enter Phone Number',
+                              hintText: 'Enter Phone Number',
+                              hintStyle: myHintStyle(),
                               border: OutlineInputBorder(),
                               errorText: errorText.value.length > 0
                                   ? errorText.value
@@ -73,7 +76,7 @@ class WaterTankServicePage extends GetView {
                           ]),
                           keyboardType: TextInputType.number,
                         ),
-                        SizedBox(height: 2,),
+                        SizedBox(height: 20),
                         FormBuilderTextField(
                           name: 'amount',
                           decoration: InputDecoration(
@@ -92,11 +95,14 @@ class WaterTankServicePage extends GetView {
                           ]),
                           keyboardType: TextInputType.number,
                         ),
+                        SizedBox(height: 20,),
                         Container(
                           width: Get.width,
                           child: ElevatedButton(
+                            style: myButtonStyle(),
                             child: Text("Pay",
                               style: TextStyle(
+                                  fontFamily: "Poppins",
                                   fontSize: 16,
                                   color: Colors.white
                               ),

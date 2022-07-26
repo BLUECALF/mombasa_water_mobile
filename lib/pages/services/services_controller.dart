@@ -9,7 +9,7 @@ class ServicesContoller extends GetxController {
     return AppBar(
       title: Text(title, style: TextStyle(
           fontFamily: "Poppins",
-          fontSize: 20,
+          fontSize: 17,
           color: Colors.white,
           letterSpacing: 3
       ),),
