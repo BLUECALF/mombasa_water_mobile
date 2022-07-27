@@ -103,27 +103,24 @@ class HomePageFirstTime extends GetView<HomeController>  {
                 ],
               ),
               SizedBox(height: 10),
-              Container(
-                width: Get.width,
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: homeController.make_button_with_png(path: "others/svgtopng/desludging icon.png",
-                          function: (){Get.to(DesludgingServicePage());},text: "Desludging Service"),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: homeController.make_button(icon_name: MwIcons.water_tank_icon,
-                          function: (){Get.to(WaterTankServicePage());},text: "Water Tank Service"),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: homeController.make_button(icon_name: MwIcons.sewer_icon,
-                          function: (){Get.to(SewerServicePage());},text: "Sewer Service"),
-                    ),
-                  ],
-                ),
+              Row(
+                children: [
+                  Expanded(
+
+                    child: homeController.make_button_with_png(path: "others/svgtopng/desludging icon.png",
+                        function: (){Get.to(DesludgingServicePage());},text: "Desludging Service"),
+                  ),
+                  Expanded(
+
+                    child: homeController.make_button(icon_name: MwIcons.water_tank_icon,
+                        function: (){Get.to(WaterTankServicePage());},text: "Water Tank Service"),
+                  ),
+                  Expanded(
+
+                    child: homeController.make_button(icon_name: MwIcons.sewer_icon,
+                        function: (){Get.to(SewerServicePage());},text: "Sewer Service"),
+                  ),
+                ],
               ),
             ],
           ),
