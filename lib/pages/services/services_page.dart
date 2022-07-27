@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mombasa_water/mw_icons_icons.dart';
+import 'package:mombasa_water/pages/search/search_page.dart';
 import 'package:mombasa_water/pages/services/detailed_services/desludging_service_page.dart';
 import 'package:mombasa_water/pages/services/detailed_services/illegal_fee_page.dart';
 import 'package:mombasa_water/pages/services/detailed_services/kiosk_service_page.dart';
@@ -29,7 +30,7 @@ class ServicesPage extends GetView<ServicesContoller>{
         ),),
          actions:[
            TextButton.icon(icon:Icon(MwIcons.search,color: Colors.black),
-              onPressed: (){},label: Text(""),),
+              onPressed: (){Get.to(SearchPage());},label: Text(""),),
          ],
         centerTitle: true,
         backgroundColor: Colors.white,
