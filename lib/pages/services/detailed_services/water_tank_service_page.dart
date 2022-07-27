@@ -80,7 +80,8 @@ class WaterTankServicePage extends GetView {
                         FormBuilderTextField(
                           name: 'amount',
                           decoration: InputDecoration(
-                              labelText: 'Enter Amount',
+                              hintText: 'Enter Amount',
+                              hintStyle: myHintStyle(),
                               border: OutlineInputBorder(),
                               errorText: errorText.value.length > 0
                                   ? errorText.value
